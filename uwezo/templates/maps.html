@@ -1,0 +1,36 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button" onclick="getLocation()">Get My Location</button>
+    <button type="submit">Submit</button>
+    <input type="text" id="id_latitude" name="latitude">
+    <input type="text" id="id_longitude" name="longitude">
+</form>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    console.log('Latitude: ',position.coords.latitude )
+
+    document.getElementById("id_latitude").value = position.coords.latitude;
+    document.getElementById("id_longitude").value = position.coords.longitude;
+        // Use Google Maps Geocoding API to reverse geocode coordinates
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: { lat: latitude, lng: longitude } }, function (results, status) {
+        if (status   
+ === "OK") {
+            const locationName = results[0].formatted_address;
+            console.log("Location:", locationName);
+        } else {
+            console.error("Geocoding failed:", status);
+        }
+    });
+}
+</script>
