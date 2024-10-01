@@ -30,6 +30,15 @@
 
 <hr>
 
+<!-- Post creation form -->
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <button type="submit" name="submit_post" class="btn btn-primary">Create Post</button>
+</form>
+
+<hr>
+
 <!-- Display existing posts -->
 <h3>Posts</h3>
 <ul>
@@ -37,6 +46,35 @@
         <li>
             <strong>{{ post.user.username }}</strong>: {{ post.content }} 
             <em>at {{ post.created_at }}</em>
+
+            <!-- Like button -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                {% if post.id in liked_posts %}
+                    <button type="submit" name="like_post" class="btn btn-warning">Unlike</button>
+                {% else %}
+                    <button type="submit" name="like_post" class="btn btn-success">Like</button>
+                {% endif %}
+            </form>
+            <span>{{ post.likes.count }} likes</span>
+
+            <!-- Comment form -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" name="submit_comment" class="btn btn-secondary">Comment</button>
+            </form>
+
+            <!-- Display comments -->
+            <ul>
+                {% for comment in post.comments.all %}
+                    <li><strong>{{ comment.user.username }}</strong>: {{ comment.content }} at {{ comment.commented_at }}</li>
+                {% empty %}
+                    <li>No comments yet.</li>
+                {% endfor %}
+            </ul>
         </li>
     {% empty %}
         <li>No posts yet.</li>

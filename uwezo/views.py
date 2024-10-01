@@ -1,15 +1,14 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
-from .models import Relationship, User, Post
-from .forms import PostForm
+from .models import Relationship, User, Post, Like, Comment
+from .forms import PostForm, CommentForm
 
 def index(request):
     login_form = AuthenticationForm()
@@ -59,6 +58,7 @@ def dashboard(request):
     if not user.is_authenticated:
         return redirect('index') 
     print(f"User: {user.username}")
+    '''
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -76,6 +76,53 @@ def dashboard(request):
         'user': user,
         'form': form,
         'posts': posts,  # Pass the posts to the template
+    })
+    '''
+    if request.method == 'POST' and 'submit_post' in request.POST:
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.user = user
+            post.save()
+            return redirect('dashboard')
+
+    # Handle comment submission
+    elif request.method == 'POST' and 'submit_comment' in request.POST:
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            post_id = request.POST.get('post_id')
+            post = get_object_or_404(Post, id=post_id)
+            comment = comment_form.save(commit=False)
+            comment.user = user
+            comment.post = post
+            comment.save()
+            return redirect('dashboard')
+
+    # Handle like action
+    elif request.method == 'POST' and 'like_post' in request.POST:
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        liked = Like.objects.filter(user=user, post=post).exists()
+
+        if liked:
+            Like.objects.filter(user=user, post=post).delete()  # Unlike
+        else:
+            Like.objects.create(user=user, post=post)  # Like
+        return redirect('dashboard')
+
+    else:
+        post_form = PostForm()
+        comment_form = CommentForm()
+
+    posts = Post.objects.all()
+    liked_posts = Like.objects.filter(user=user).values_list('post_id', flat=True)
+
+    return render(request, 'dashboard.html', {
+        'user': user,
+        'post_form': post_form,
+        'comment_form': comment_form,
+        'posts': posts,
+        'liked_posts': liked_posts,  # Pass liked posts for conditional rendering
     })
 
 def user_list(request):
@@ -120,7 +167,7 @@ def follow_unfollow(request, user_id):
         return redirect('user_list')
 
 
-
+'''
 # other stuff
 from .forms import ReportForm
 
@@ -133,5 +180,6 @@ def map(request):
     else:
         form = ReportForm()
     return render(request, 'result.html', {'form': form})
+'''
 def map_view(request):
     return render(request, 'maps.html')
