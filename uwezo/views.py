@@ -8,7 +8,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
-from .models import Relationship, User
+from .models import Relationship, User, Post
+from .forms import PostForm
+
 def index(request):
     login_form = AuthenticationForm()
     signup_form = UserCreationForm()
@@ -57,8 +59,23 @@ def dashboard(request):
     if not user.is_authenticated:
         return redirect('index') 
     print(f"User: {user.username}")
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = user  # Assign the post to the current user
+            post.save()
+            return redirect('dashboard')  # Redirect to the dashboard after the post is created
+    else:
+        form = PostForm()
+
+    # Retrieve all posts from all users (or filter as needed)
+    posts = Post.objects.all()
+
     return render(request, 'dashboard.html', {
-        'user': user,  # Pass the user object to the template
+        'user': user,
+        'form': form,
+        'posts': posts,  # Pass the posts to the template
     })
 
 def user_list(request):

@@ -21,3 +21,24 @@
         </nav>
     </div>
 </header>
+<!-- Post creation form -->
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- Lets add attachments such as videos or images, audio?-->
+    <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+
+<hr>
+
+<!-- Display existing posts -->
+<h3>Posts</h3>
+<ul>
+    {% for post in posts %}
+        <li>
+            <strong>{{ post.user.username }}</strong>: {{ post.content }} 
+            <em>at {{ post.created_at }}</em>
+        </li>
+    {% empty %}
+        <li>No posts yet.</li>
+    {% endfor %}
+</ul>
