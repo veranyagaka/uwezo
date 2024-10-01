@@ -5,8 +5,10 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout as auth_logout, auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as auth_login
 from django.contrib import messages
+from .models import Relationship, User
 def index(request):
     login_form = AuthenticationForm()
     signup_form = UserCreationForm()
@@ -59,6 +61,46 @@ def dashboard(request):
         'user': user,  # Pass the user object to the template
     })
 
+def user_list(request):
+    user = request.user  # Get the currently logged-in user
+    if not user.is_authenticated:
+        return redirect('index') 
+    # Exclude the logged-in user from the list of users
+    users = User.objects.exclude(id=request.user.id)
+
+    # Get a list of users the current user is following
+    following = Relationship.objects.filter(follower=request.user).values_list('following', flat=True)
+
+    return render(request, 'user_list.html', {
+        'users': users,
+        'following': following,
+    })
+def follow_unfollow(request, user_id):
+    try:
+        target_user = User.objects.get(id=user_id)
+        # just for double checking though we removed the user from the list
+        if request.user == target_user:
+            # Prevent users from following themselves
+            messages.warning(request, "You cannot follow yourself.")
+            return redirect('user_list')
+
+        # Check if the logged-in user is already following the target user
+        relationship = Relationship.objects.filter(follower=request.user, following=target_user).first()
+
+        if relationship:
+            # If the relationship exists, unfollow
+            relationship.delete()
+            messages.success(request, f'You have unfollowed {target_user.username}.')
+        else:
+            # If no relationship exists, create a new follow
+            Relationship.objects.create(follower=request.user, following=target_user)
+            messages.success(request, f'You are now following {target_user.username}.')
+
+        return redirect('user_list')
+
+    except User.DoesNotExist:
+        messages.error(request, "User not found.")
+        return redirect('user_list')
 
 
 
