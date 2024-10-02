@@ -37,8 +37,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            <div className="absolute top-0 z-[-2] h-lvh w-full bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
+          <ThemeProvider 
+            attribute="class" 
+            enableColorScheme
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
             <ToasterProvider />
             <Suspense fallback={ <Loading /> }>
               {children}
