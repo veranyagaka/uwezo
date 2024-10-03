@@ -165,7 +165,36 @@ def follow_unfollow(request, user_id):
     except User.DoesNotExist:
         messages.error(request, "User not found.")
         return redirect('user_list')
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
 
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
+    
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
+def profiles_view(request):
+    #user = get_object_or_404(User, username=username)
+    user = request.user  # Get the currently logged-in user
+    if not user.is_authenticated:
+        return redirect('index') 
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
+    
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
 
 '''
 # other stuff
