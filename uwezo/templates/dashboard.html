@@ -1,0 +1,82 @@
+<h1>Welcome, {{ user.username }}!</h1> 
+<h2>Dashboard</h2>
+<header>
+    <div class="container">
+        <h3>Community Accountability Platform</h3>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Report Incident</a></li>
+                <li><a href="#">Hotspot Map</a></li>
+                <li><a href="#">Track Progress</a></li>
+                <li><a href="#">Community Forum</a></li>
+                <li><a href="#">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- Post creation form -->
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- Lets add attachments such as videos or images, audio?-->
+    <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+
+<hr>
+
+<!-- Post creation form -->
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <button type="submit" name="submit_post" class="btn btn-primary">Create Post</button>
+</form>
+
+<hr>
+
+<!-- Display existing posts -->
+<h3>Posts</h3>
+<ul>
+    {% for post in posts %}
+        <li>
+            <strong>{{ post.user.username }}</strong>: {{ post.content }} 
+            <em>at {{ post.created_at }}</em>
+
+            <!-- Like button -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                {% if post.id in liked_posts %}
+                    <button type="submit" name="like_post" class="btn btn-warning">Unlike</button>
+                {% else %}
+                    <button type="submit" name="like_post" class="btn btn-success">Like</button>
+                {% endif %}
+            </form>
+            <span>{{ post.likes.count }} likes</span>
+
+            <!-- Comment form -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" name="submit_comment" class="btn btn-secondary">Comment</button>
+            </form>
+
+            <!-- Display comments -->
+            <ul>
+                {% for comment in post.comments.all %}
+                    <li><strong>{{ comment.user.username }}</strong>: {{ comment.content }} at {{ comment.commented_at }}</li>
+                {% empty %}
+                    <li>No comments yet.</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% empty %}
+        <li>No posts yet.</li>
+    {% endfor %}
+</ul>
