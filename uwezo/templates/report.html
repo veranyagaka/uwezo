@@ -1,35 +1,251 @@
-<!-- report.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Incident</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Accountability Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1f2e;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .card {
+            background-color: #252d3f;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 14px;
+            color: #8b95a9;
+        }
+        .card .value {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .card .change {
+            font-size: 12px;
+            color: #8b95a9;
+        }
+        .chart-container {
+            grid-column: span 2;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #3a4357;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-bar .progress {
+            height: 100%;
+            background-color: #6c5dd3;
+        }
+        .add-report-container {
+            grid-column: 2 / 4;
+            display: flex;
+            justify-content: center;
+        }
+        .add-report-form {
+            width: 100%;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #8b95a9;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #3a4357;
+            background-color: #1a1f2e;
+            color: #ffffff;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            background-color: #6c5dd3;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #5a4cb4;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Report Incident</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="report.html">Report Incident</a></li>
-                <li><a href="hotspot.html">Hotspot Map</a></li>
-                <li><a href="track.html">Track Progress</a></li>
-                <li><a href="forum.html">Community Forum</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Reported Incidents</h2>
-        <div class="card-container">
-            <div class="card">Incident 1: Description...</div>
-            <div class="card">Incident 2: Description...</div>
-            <div class="card">Incident 3: Description...</div>
+    <h1>Accountability Dashboard</h1>
+    <div class="dashboard">
+        <div class="card">
+            <h2>Total Reports</h2>
+            <div class="value">24</div>
+            <div class="change">+2 from last month</div>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Accountability Platform</p>
-    </footer>
+        <div class="card">
+            <h2>Team Members</h2>
+            <div class="value">12</div>
+            <div class="change">+3 new this quarter</div>
+        </div>
+        <div class="card">
+            <h2>Progress</h2>
+            <div class="value">75%</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 75%;"></div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Pending Tasks</h2>
+            <div class="value">7</div>
+            <div class="change">-2 from last week</div>
+        </div>
+        <div class="card chart-container">
+            <h2>Monthly Reports</h2>
+            <canvas id="monthlyReportsChart"></canvas>
+        </div>
+        <div class="card chart-container">
+            <h2>Task Completion</h2>
+            <canvas id="taskCompletionChart"></canvas>
+        </div>
+        <div class="add-report-container">
+            <div class="card add-report-form">
+                <h2>Add New Report</h2>
+                <form id="reportForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="reportTitle">Report Title</label>
+                        <input type="text" id="reportTitle" name="reportTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportStatus">Status</label>
+                        <select id="reportStatus" name="reportStatus">
+                            <option value="pending">Pending</option>
+                            <option value="inProgress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportDescription">Description</label>
+                        <textarea id="reportDescription" name="reportDescription" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Report</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Monthly Reports Chart
+        const monthlyReportsCtx = document.getElementById('monthlyReportsChart').getContext('2d');
+        new Chart(monthlyReportsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Reports',
+                    data: [4, 3, 2, 5, 6, 4],
+                    backgroundColor: '#6c5dd3',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#3a4357'
+                        },
+                        ticks: {
+                            color: '#8b95a9'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#3a4357'
+                        },
+                        ticks: {
+                            color: '#8b95a9'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Task Completion Chart
+        const taskCompletionCtx = document.getElementById('taskCompletionChart').getContext('2d');
+        new Chart(taskCompletionCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Pending'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#1de9b6', '#ffc107'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#8b95a9'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('reportTitle').value;
+            const description = document.getElementById('reportDescription').value;
+            const status = document.getElementById('reportStatus').value;
+            
+            // Here you would typically send this data to a server
+            console.log('New report submitted:', { title, description, status });
+            
+            // For demonstration, let's update the Total Reports count
+            const totalReportsElement = document.querySelector('.card:first-child .value');
+            let currentTotal = parseInt(totalReportsElement.textContent);
+            totalReportsElement.textContent = currentTotal + 1;
+            
+            // Clear the form
+            this.reset();
+            
+            alert('Report submitted successfully!');
+        });
+    </script>
 </body>
 </html>
