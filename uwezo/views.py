@@ -10,6 +10,14 @@ from django.contrib import messages
 from .models import Relationship, User, Post, Like, Comment
 from .forms import PostForm, CommentForm
 
+# Defining API views (inserted by Osborn)
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+# myapp/views.py
+from rest_framework import generics
+from .models import Relationship, Post, Like, Comment
+from .serializers import RelationshipSerializer, PostSerializer, LikeSerializer, CommentSerializer
+
 def index(request):
     login_form = AuthenticationForm()
     signup_form = UserCreationForm()
@@ -165,6 +173,11 @@ def follow_unfollow(request, user_id):
     except User.DoesNotExist:
         messages.error(request, "User not found.")
         return redirect('user_list')
+    
+@api_view(['GET'])
+def get_data(request):
+    data = {"message": "Hello from Django!"}
+    return Response(data)
 
 
 '''
@@ -183,3 +196,43 @@ def map(request):
 '''
 def map_view(request):
     return render(request, 'maps.html')
+
+# List/Create Relationships
+class RelationshipListCreateView(generics.ListCreateAPIView):
+    queryset = Relationship.objects.all()
+    serializer_class = RelationshipSerializer
+
+# Retrieve/Update/Delete a Single Relationship
+class RelationshipDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Relationship.objects.all()
+    serializer_class = RelationshipSerializer
+
+# List/Create Posts
+class PostListCreateView(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# Retrieve/Update/Delete a Single Post
+class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# List/Create Likes
+class LikeListCreateView(generics.ListCreateAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+# Retrieve/Update/Delete a Single Like
+class LikeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+# List/Create Comments
+class CommentListCreateView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+# Retrieve/Update/Delete a Single Comment
+class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
