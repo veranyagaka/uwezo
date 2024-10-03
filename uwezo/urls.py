@@ -4,7 +4,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('profile',views.profile, name='profile'),
+    path('profile',views.profiles_view, name='profile'),
     
     #path('profile/<str:username>/', views.profiles_view, name='profiles'), # other peoples profiles
 

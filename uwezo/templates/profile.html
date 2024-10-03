@@ -8,8 +8,13 @@
 <body>
     <div class="profile-container">
         <h1>{{ user_profile.username }}'s Profile</h1>
-        <p>Email: {{ user_profile.email }}</p>
-        
+        {% if not user_profile.email %}
+            <div class="alert alert-warning">
+                <p>Email is not set! Please update your email.</p>
+            </div> 
+        {% else %}
+            <p>Email: {{ user_profile.email }}</p>
+        {% endif %}
         <div class="follow-stats">
             <p>Followers: {{ follower_count }}</p>
             <p>Following: {{ following_count }}</p>
