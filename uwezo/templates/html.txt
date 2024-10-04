@@ -1,0 +1,101 @@
+<div class="bg-[#282A36] min-h-screen p-8 flex flex-col md:flex-row justify-center items-start gap-8">
+  <!-- Contribution Form Section -->
+  <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl mb-12 max-w-md w-full" id="contribute">
+    <h2 class="text-3xl font-bold mb-6 text-[#ff5733]">Contribute Now</h2>
+    <form id="contributionForm" class="space-y-6">
+      <div class="relative">
+        <input type="number" id="amount" name="amount" class="peer w-full p-4 rounded-md bg-[#44475a] border-2 border-transparent focus:border-[#ff5733] focus:outline-none text-white placeholder-transparent transition-all duration-300" placeholder="Enter amount" required>
+        <label for="amount" class="absolute left-4 -top-3 text-sm font-medium text-[#ff5733] transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-[#ff5733]">Amount (KES)</label>
+      </div>
+      <div class="relative">
+        <input type="tel" id="phone" name="phone" class="peer w-full p-4 rounded-md bg-[#44475a] border-2 border-transparent focus:border-[#ff5733] focus:outline-none text-white placeholder-transparent transition-all duration-300" placeholder="Enter M-Pesa number" required>
+        <label for="phone" class="absolute left-4 -top-3 text-sm font-medium text-[#ff5733] transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-[#ff5733]">M-Pesa Phone Number</label>
+      </div>
+      <button type="submit" class="w-full bg-[#ff5733] text-white font-bold py-3 px-6 rounded-md hover:bg-[#ff7f5c] active:bg-[#e64a2e] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#ff5733] focus:ring-opacity-50">
+        Contribute via M-Pesa
+      </button>
+    </form>
+    <div id="message" class="mt-4 text-center text-white hidden"></div>
+  </div>
+
+  <!-- Real-time Transactions Section -->
+  <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl mb-12 max-w-md w-full">
+    <h2 class="text-3xl font-bold mb-6 text-[#ff5733]">Recent Contributions</h2>
+    <div id="transactionsList" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+      <!-- Transactions will be dynamically added here -->
+    </div>
+  </div>
+</div>
+
+<script>
+  const contributionForm = document.getElementById('contributionForm');
+  const messageEl = document.getElementById('message');
+  const transactionsList = document.getElementById('transactionsList');
+
+  // Sample data for initial transactions
+  const sampleTransactions = [
+    { name: 'John D.', amount: 1000 },
+    { name: 'Sarah M.', amount: 500 },
+    { name: 'Alex K.', amount: 2000 },
+  ];
+
+  // Function to add a new transaction to the list
+  function addTransaction(name, amount) {
+    const transactionEl = document.createElement('div');
+    transactionEl.className = 'bg-[#44475a] rounded-lg p-4 flex justify-between items-center transform transition-all duration-300 hover:scale-105';
+    transactionEl.innerHTML = `
+      <span class="text-white">${name}</span>
+      <span class="text-[#50fa7b] font-bold">KES ${amount}</span>
+    `;
+    transactionsList.prepend(transactionEl);
+
+    // Remove oldest transaction if more than 5 are displayed
+    if (transactionsList.children.length > 5) {
+      transactionsList.removeChild(transactionsList.lastChild);
+    }
+  }
+
+  // Add sample transactions
+  sampleTransactions.forEach(transaction => {
+    addTransaction(transaction.name, transaction.amount);
+  });
+
+  // Handle form submission
+  contributionForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const amount = document.getElementById('amount').value;
+    const phone = document.getElementById('phone').value;
+
+    // Simulate API call
+    setTimeout(() => {
+      messageEl.textContent = `Processing payment of KES ${amount} from ${phone}...`;
+      messageEl.classList.remove('hidden');
+      messageEl.classList.add('text-[#50fa7b]'); // Dracula green color for success message
+
+      // Add the new transaction to the list
+      const name = `+${phone.slice(-4)}`; // Use last 4 digits of phone number
+      addTransaction(name, amount);
+
+      // Clear form fields
+      contributionForm.reset();
+    }, 1000);
+  });
+
+  // Add input animations
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      input.parentElement.classList.add('scale-105');
+    });
+    input.addEventListener('blur', () => {
+      input.parentElement.classList.remove('scale-105');
+    });
+  });
+
+  // Simulate real-time transactions
+  setInterval(() => {
+    const randomAmount = Math.floor(Math.random() * 10000) + 100;
+    const randomName = `User${Math.floor(Math.random() * 1000)}`;
+    addTransaction(randomName, randomAmount);
+  }, 5000); // Add a new transaction every 5 seconds
+</script>

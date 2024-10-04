@@ -3,146 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jukumu - Community</title>
+    <title>Jukumu Trending - Community Accountability</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body {
-            background-color: #1a202c;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
             color: #e2e8f0;
         }
-        .post {
-            background-color: #2d3748;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            padding: 1rem;
+        .card {
+            background-color: #1e293b;
+            transition: transform 0.3s ease-in-out;
         }
-        .chat-container {
-            height: 300px;
-            overflow-y: auto;
-        }
-        .chat-message {
-            background-color: #2d3748;
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
+        .card:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
-<body class="min-h-screen p-8">
-    <div class="container mx-auto">
-        <h1 class="text-4xl font-bold mb-8">Community Forums</h1>
-        
-        <div class="grid grid-cols-3 gap-8">
-            <div class="col-span-2">
-                <h2 class="text-2xl font-semibold mb-4">Recent Posts</h2>
-                <div id="posts-container">
-                    <!-- Posts will be dynamically added here -->
+<body class="min-h-screen">
+    <header class="bg-slate-800 shadow-lg">
+        <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="/placeholder.svg?height=40&width=40" alt="Jukumu Logo" class="h-10 w-10 mr-2">
+                <span class="text-2xl font-bold text-indigo-400">Jukumu Trending</span>
+            </div>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                <li><a href="#" class="text-gray-300 hover:text-white">Report</a></li>
+                <li><a href="#" class="text-gray-300 hover:text-white">Community</a></li>
+                <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-indigo-400">Trending Accountability Actions</h1>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-indigo-300">Crime Reporting Trends</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/crime1/400/200" alt="Crime Reporting" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Anonymous Tip Submissions</h3>
+                        <p class="text-gray-400">30% increase in anonymous crime tips, leading to faster case resolutions.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/crime2/400/200" alt="Community Policing" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Community Policing Initiatives</h3>
+                        <p class="text-gray-400">15 new neighborhood watch programs established, improving local safety.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/crime3/400/200" alt="Digital Evidence" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Digital Evidence Submissions</h3>
+                        <p class="text-gray-400">50% rise in digital evidence submissions, enhancing investigation accuracy.</p>
+                    </div>
                 </div>
             </div>
-            
-            <div>
-                <h2 class="text-2xl font-semibold mb-4">Live Chat</h2>
-                <div class="chat-container bg-gray-800 rounded-lg p-4 mb-4" id="chat-messages">
-                    <!-- Chat messages will be dynamically added here -->
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-indigo-300">Community Support Initiatives</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/support1/400/200" alt="Volunteer Hours" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Volunteer Hours Logged</h3>
+                        <p class="text-gray-400">Community members contributed over 10,000 hours to local support programs.</p>
+                    </div>
                 </div>
-                <div class="flex">
-                    <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none" placeholder="Type your message...">
-                    <button id="send-chat" class="bg-blue-500 text-white rounded-r-lg px-4 py-2 hover:bg-blue-600 focus:outline-none">Send</button>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/support2/400/200" alt="Food Drive" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Successful Food Drives</h3>
+                        <p class="text-gray-400">5 tons of food collected and distributed to families in need this month.</p>
+                    </div>
                 </div>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/support3/400/200" alt="Mentorship" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Youth Mentorship Program</h3>
+                        <p class="text-gray-400">200 at-risk youth paired with mentors, showing improved academic performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-indigo-300">Environmental Accountability</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/env1/400/200" alt="Tree Planting" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Community Tree Planting</h3>
+                        <p class="text-gray-400">1,000 new trees planted in urban areas, improving air quality and green spaces.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/env2/400/200" alt="Recycling" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Recycling Initiatives</h3>
+                        <p class="text-gray-400">25% increase in household recycling participation rates this quarter.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/env3/400/200" alt="Clean Energy" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Clean Energy Adoption</h3>
+                        <p class="text-gray-400">100 households switched to solar power, reducing carbon emissions significantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-indigo-300">Join the Movement</h2>
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="text-lg mb-6">Be part of the change. Report incidents, support your community, and help create a safer, more accountable society.</p>
+                <a href="contribution.html" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition duration-300">Get Involved Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-gray-400 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Jukumu</h3>
+                    <p>Empowering communities through accountability and support.</p>
+                </div>
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-semibold mb-2">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>&copy; 2024 Jukumu. All rights reserved.</p>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Sample data for posts
-        const posts = [
-            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false },
-            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true },
-            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false },
-        ];
-
-        const postsContainer = document.getElementById('posts-container');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const sendChatButton = document.getElementById('send-chat');
-
-        // Function to create a post element
-        function createPostElement(post) {
-            const postElement = document.createElement('div');
-            postElement.className = 'post';
-            postElement.innerHTML = `
-                <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
-                <p class="mb-4">${post.content}</p>
-                <div class="flex items-center justify-between">
-                    <div>
-                        <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-gray-600 focus:outline-none mr-2">
-                            <i class="fas fa-arrow-up mr-1"></i>${post.upvotes}
-                        </button>
-                        <button class="verify-btn ${post.verified ? 'bg-green-600' : 'bg-gray-700'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none">
-                            <i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}
-                        </button>
-                    </div>
-                    <span class="text-sm text-gray-400">Posted by User123</span>
-                </div>
-            `;
-
-            const upvoteBtn = postElement.querySelector('.upvote-btn');
-            upvoteBtn.addEventListener('click', () => {
-                post.upvotes++;
-                upvoteBtn.innerHTML = `<i class="fas fa-arrow-up mr-1"></i>${post.upvotes}`;
-            });
-
-            const verifyBtn = postElement.querySelector('.verify-btn');
-            verifyBtn.addEventListener('click', () => {
-                post.verified = !post.verified;
-                verifyBtn.classList.toggle('bg-green-600');
-                verifyBtn.classList.toggle('bg-gray-700');
-                verifyBtn.innerHTML = `<i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}`;
-            });
-
-            return postElement;
-        }
-
-        // Render initial posts
-        posts.forEach(post => {
-            postsContainer.appendChild(createPostElement(post));
-        });
-
-        // Chat functionality
-        sendChatButton.addEventListener('click', () => {
-            const message = chatInput.value.trim();
-            if (message) {
-                const chatMessage = document.createElement('div');
-                chatMessage.className = 'chat-message';
-                chatMessage.textContent = `User: ${message}`;
-                chatMessages.appendChild(chatMessage);
-                chatInput.value = '';
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        });
-
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendChatButton.click();
-            }
-        });
-
-        // Simulate real-time chat updates
-        setInterval(() => {
-            const messages = [
-                "Has anyone heard about the new park opening?",
-                "I'm heading to the city center. How's the traffic?",
-                "Just saw a great community event happening next week!",
-                "Any updates on the water shortage in Lavington?",
-            ];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            const chatMessage = document.createElement('div');
-            chatMessage.className = 'chat-message';
-            chatMessage.textContent = `RandomUser: ${randomMessage}`;
-            chatMessages.appendChild(chatMessage);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 10000); // Add a random message every 10 seconds
-    </script>
+    </footer>
 </body>
 </html>

@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Forums</title>
+    <title>Jukumu - Forum</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            background-color: #1a202c;
-            color: #e2e8f0;
+        :root {
+            --color-bg: #1C1C28;
+            --color-primary: #6366F1;
+            --color-secondary: #6366F1;
+            --color-accent: #FB7185;
+            --color-text: #F0F4F8;
         }
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+        .container { padding-inline: 25px; }
         .post {
-            background-color: #2d3748;
+            background-color: #2E2E48;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
             padding: 1rem;
@@ -22,68 +30,305 @@
             overflow-y: auto;
         }
         .chat-message {
-            background-color: #2d3748;
+            background-color: #2E2E48;
             border-radius: 0.5rem;
             margin-bottom: 0.5rem;
             padding: 0.5rem;
         }
+        .verify-btn {
+            background-color: var(--color-accent);
+            transition: background-color 0.3s ease;
+        }
+        .verify-btn:hover {
+            background-color: #E11D48;
+        }
+        .verify-btn.verified {
+            background-color: #22C55E;
+        }
+        .verify-btn.verified:hover {
+            background-color: #16A34A;
+        }
+        .icon-btn {
+            background-color: transparent;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+        .icon-btn:hover {
+            color: var(--color-accent);
+        }
+        .icon-btn.active {
+            color: var(--color-accent);
+        }
+        .sidebar {
+            background-color: #2E2E48;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        /*-----------------------------------*\
+        #FOOTER
+        \*-----------------------------------*/
+
+        .footer { background-color: var(--xiketic); }
+
+        .footer-top {
+        padding-block: var(--section-padding);
+        border-block-end: 1px solid hsla(0, 0%, 100%, 0.2);
+        display: grid;
+        gap: 50px 40px;
+        }
+
+        .footer-text {
+        color: var(--gainsboro);
+        margin-block: 15px 24px;
+        }
+
+        .social-list {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        }
+
+        .social-link {
+        background-color: var(--eerie-black-2);
+        color: var(--cultured);
+        width: 42px;
+        height: 42px;
+        font-size: 1.8rem;
+        border-radius: var(--radius-4);
+        overflow: hidden;
+        }
+
+        .social-link ion-icon {
+        padding: 12px;
+        transition: var(--transition-2);
+        }
+
+        .social-link:is(:hover, :focus) ion-icon { transform: translateY(-42px); }
+
+        .footer-list-title {
+        color: var(--cultured);
+        font-family: var(--ff-jost);
+        font-size: var(--fs-3);
+        margin-block-end: 20px;
+        }
+
+        .footer-link {
+        width: max-content;
+        color: var(--gainsboro);
+        margin-block: 12px;
+        transition: var(--transition-1);
+        }
+
+        .footer-link:is(:hover, :focus) { 
+        text-decoration: underline;
+        background-color: hsla(0, 0%, 100%, 0.05);
+        }
+
+        .newsletter-form { position: relative; }
+
+        .newsletter-input {
+        background-color: var(--eerie-black-2);
+        color: var(--gainsboro);
+        font-size: var(--fs-5);
+        padding: 12px 20px;
+        padding-inline-end: 80px;
+        border-radius: var(--radius-4);
+        outline: none;
+        transition: var(--transition-1);
+        }
+
+        .newsletter-input:focus { box-shadow: 0 0 1px 4px hsl(0, 0%, 40%); }
+
+        .newsletter-btn {
+        background-image: var(--gradient-1);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding-inline: 25px;
+        border-radius: 50px 4px 4px 50px;
+        }
+
+        .newsletter-btn ion-icon { --ionicon-stroke-width: 40px; }
+
+        .footer-bottom {
+        color: var(--gainsboro);
+        padding-block: 25px;
+        text-align: center;
+        }
+
+        .copyright-link {
+        text-decoration: underline;
+        display: inline-block;
+        transition: var(--transition-1);
+        }
+
+        .copyright-link:is(:hover, :focus) { background-color: hsla(0, 0%, 100%, 0.05); }
+
+
+
+
+
+        /*-----------------------------------*\
+        #BACK TO TOP
+        \*-----------------------------------*/
+
+        .back-to-top {
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        background-color: var(--xiketic);
+        color: var(--cultured);
+        font-size: 2rem;
+        padding: 15px 12px;
+        border-radius: var(--radius-6);
+        box-shadow: var(--shadow-2);
+        z-index: 2;
+        visibility: hidden;
+        opacity: 0;
+        transition: var(--transition-1);
+        }
+
+        .back-to-top.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-15px);
+        }
+
+        .back-to-top:is(:hover, :focus) { background-color: var(--raisin-black); }
     </style>
 </head>
-<body class="min-h-screen p-8">
+<body class="min-h-screen p-4 md:p-8">
     <div class="container mx-auto">
-        <h1 class="text-4xl font-bold mb-8">Community Forums</h1>
+        <header class="bg-gray-800 p-4 rounded-lg mb-4">
+            <h1 class="text-2xl md:text-4xl font-bold">Jukumika</h1>
+        </header>
         
-        <div class="grid grid-cols-3 gap-8">
-            <div class="col-span-2">
-                <h2 class="text-2xl font-semibold mb-4">Recent Posts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <main class="md:col-span-2">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold mb-2">Create a New Post</h2>
+                    <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-2 focus:outline-none" placeholder="Post Title">
+                    <textarea id="post-content" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-2 focus:outline-none" rows="3" placeholder="Post Content"></textarea>
+                    <input type="file" id="post-media" class="hidden" accept="image/*,video/*">
+                    <button id="add-media" class="bg-indigo-500 text-white rounded-lg px-4 py-2 hover:bg-indigo-600 focus:outline-none mr-2">Add Media</button>
+                    <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none">Submit Post</button>
+                </div>
                 <div id="posts-container">
                     <!-- Posts will be dynamically added here -->
                 </div>
-            </div>
+            </main>
             
-            <div>
-                <h2 class="text-2xl font-semibold mb-4">Live Chat</h2>
+            <aside class="sidebar">
+                <h2 class="text-xl font-semibold mb-4">Community Info</h2>
+                <p class="mb-4">Welcome to our community! Share your thoughts, ideas, and experiences with others.</p>
+                <h3 class="text-lg font-semibold mb-2">Rules</h3>
+                <ul class="list-disc pl-5 mb-4">
+                    <li>Be respectful to others</li>
+                    <li>No spam or self-promotion</li>
+                    <li>Use appropriate tags for your posts</li>
+                </ul>
+                <h2 class="text-xl font-semibold mb-4">Live Chat</h2>
                 <div class="chat-container bg-gray-800 rounded-lg p-4 mb-4" id="chat-messages">
                     <!-- Chat messages will be dynamically added here -->
                 </div>
                 <div class="flex">
                     <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none" placeholder="Type your message...">
-                    <button id="send-chat" class="bg-blue-500 text-white rounded-r-lg px-4 py-2 hover:bg-blue-600 focus:outline-none">Send</button>
+                    <button id="send-chat" class="bg-indigo-500 text-white rounded-r-lg px-4 py-2 hover:bg-indigo-600 focus:outline-none">Send</button>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 
-    <script>
-        // Sample data for posts
-        const posts = [
-            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false },
-            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true },
-            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false },
-            { id: 4, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false },
-            { id: 5, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true },
-            { id: 6, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false },
-        ];
+    <!-- Footer section -->
+    <footer class="bg-slate-800 text-gray-400 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Jukumu</h3>
+                    <p>Empowering communities through accountability and support.</p>
+                </div>
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-semibold mb-2">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>&copy; 2024 Jukumu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
+  <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
         const postsContainer = document.getElementById('posts-container');
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         const sendChatButton = document.getElementById('send-chat');
+        const postTitle = document.getElementById('post-title');
+        const postContent = document.getElementById('post-content');
+        const postMedia = document.getElementById('post-media');
+        const addMediaButton = document.getElementById('add-media');
+        const submitPostButton = document.getElementById('submit-post');
 
-        // Function to create a post element
+        let posts = [
+            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false, loved: false, media: { type: 'image', url: 'https://picsum.photos/seed/traffic/400/300' } },
+            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true, loved: true, media: { type: 'image', url: 'https://picsum.photos/seed/covid/400/300' } },
+            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false, loved: false, media: { type: 'video', url: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4' } },
+        ];
+
         function createPostElement(post) {
             const postElement = document.createElement('div');
             postElement.className = 'post';
             postElement.innerHTML = `
                 <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
                 <p class="mb-4">${post.content}</p>
-                <div class="flex items-center justify-between">
-                    <div>
-                        <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-gray-600 focus:outline-none mr-2">
+                ${post.media ? `<div class="mb-4">
+                    ${post.media.type === 'image' 
+                        ? `<img src="${post.media.url}" alt="Post image" class="max-w-full h-auto rounded-lg">`
+                        : `<video src="${post.media.url}" controls class="max-w-full h-auto rounded-lg"></video>`
+                    }
+                </div>` : ''}
+                <div class="flex items-center justify-between flex-wrap">
+                    <div class="flex items-center space-x-2 mb-2 sm:mb-0">
+                        <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-gray-600 focus:outline-none">
                             <i class="fas fa-arrow-up mr-1"></i>${post.upvotes}
                         </button>
-                        <button class="verify-btn ${post.verified ? 'bg-green-600' : 'bg-gray-700'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none">
+                        <button class="verify-btn ${post.verified ? 'verified' : ''} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none">
                             <i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}
+                        </button>
+                        <button class="icon-btn love-btn ${post.loved ? 'active' : ''} px-2 py-1 rounded-lg focus:outline-none">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="icon-btn share-btn px-2 py-1 rounded-lg focus:outline-none">
+                            <i class="fas fa-share-alt"></i>
                         </button>
                     </div>
                     <span class="text-sm text-gray-400">Posted by User123</span>
@@ -99,20 +344,86 @@
             const verifyBtn = postElement.querySelector('.verify-btn');
             verifyBtn.addEventListener('click', () => {
                 post.verified = !post.verified;
-                verifyBtn.classList.toggle('bg-green-600');
-                verifyBtn.classList.toggle('bg-gray-700');
+                verifyBtn.classList.toggle('verified');
                 verifyBtn.innerHTML = `<i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}`;
+            });
+
+            const loveBtn = postElement.querySelector('.love-btn');
+            loveBtn.addEventListener('click', () => {
+                post.loved = !post.loved;
+                loveBtn.classList.toggle('active');
+            });
+
+            const shareBtn = postElement.querySelector('.share-btn');
+            shareBtn.addEventListener('click', () => {
+                alert('Sharing functionality would be implemented here.');
             });
 
             return postElement;
         }
 
-        // Render initial posts
-        posts.forEach(post => {
-            postsContainer.appendChild(createPostElement(post));
+        function renderPosts() {
+            postsContainer.innerHTML = '';
+            posts.forEach(post => {
+                postsContainer.insertAdjacentElement('afterbegin', createPostElement(post));
+            });
+        }
+
+        renderPosts();
+
+        addMediaButton.addEventListener('click', () => {
+            postMedia.click();
         });
 
-        // Chat functionality
+        postMedia.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                addMediaButton.textContent = 'Media Added';
+                addMediaButton.classList.add('bg-green-500');
+                addMediaButton.classList.remove('bg-indigo-500');
+            }
+        });
+
+        submitPostButton.addEventListener('click', () => {
+            const title = postTitle.value.trim();
+            const content = postContent.value.trim();
+            const mediaFile = postMedia.files[0];
+
+            if (title && content) {
+                const newPost = {
+                    id: posts.length + 1,
+                    title,
+                    content,
+                    upvotes: 0,
+                    verified: false,
+                    loved: false,
+                    media: null
+                };
+
+                if (mediaFile) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        newPost.media = {
+                            type: mediaFile.type.startsWith('image/') ? 'image' : 'video',
+                            url: e.target.result
+                        };
+                        posts.unshift(newPost);
+                        postsContainer.insertAdjacentElement('afterbegin', createPostElement(newPost));
+                    };
+                    reader.readAsDataURL(mediaFile);
+                } else {
+                    posts.unshift(newPost);
+                    postsContainer.insertAdjacentElement('afterbegin', createPostElement(newPost));
+                }
+
+                postTitle.value = '';
+                postContent.value = '';
+                postMedia.value = '';
+                addMediaButton.textContent = 'Add Media';
+                addMediaButton.classList.remove('bg-green-500');
+                addMediaButton.classList.add('bg-indigo-500');
+            }
+        });
+
         sendChatButton.addEventListener('click', () => {
             const message = chatInput.value.trim();
             if (message) {
@@ -131,7 +442,6 @@
             }
         });
 
-        // Simulate real-time chat updates
         setInterval(() => {
             const messages = [
                 "Has anyone heard about the new park opening?",
@@ -145,7 +455,7 @@
             chatMessage.textContent = `RandomUser: ${randomMessage}`;
             chatMessages.appendChild(chatMessage);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 10000); // Add a random message every 10 seconds
+        }, 10000);
     </script>
 </body>
 </html>

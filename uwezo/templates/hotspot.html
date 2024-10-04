@@ -116,6 +116,91 @@
         </div>
     </div>
 
+    
+    <!-- Reusable Footer using Tailwind CSS -->
+<footer class="bg-gray-900 py-16 text-gray-300">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Footer Brand and Social Links -->
+      <div class="space-y-4">
+        <a href="#" class="flex items-center gap-2">
+          <img src="./assets/images/logo.svg" width="48" height="48" alt="Jukumu Logo" class="w-12 h-12">
+          <span class="text-white text-xl font-bold">Jukumu</span>
+        </a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis non, fugit totam vel laboriosam vitae.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-indigo-500 transition-colors">
+            <ion-icon name="logo-facebook" class="text-white text-xl"></ion-icon>
+          </a>
+          <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-indigo-500 transition-colors">
+            <ion-icon name="logo-twitter" class="text-white text-xl"></ion-icon>
+          </a>
+          <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-indigo-500 transition-colors">
+            <ion-icon name="logo-pinterest" class="text-white text-xl"></ion-icon>
+          </a>
+          <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-indigo-500 transition-colors">
+            <ion-icon name="logo-discord" class="text-white text-xl"></ion-icon>
+          </a>
+        </div>
+      </div>
+  
+      <!-- Useful Links -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Useful Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-indigo-500">All NFTs</a></li>
+          <li><a href="#" class="hover:text-indigo-500">How It Works</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Create</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Explore</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Privacy & Terms</a></li>
+        </ul>
+      </div>
+  
+      <!-- Community Links -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Community</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-indigo-500">Help Center</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Partners</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Suggestions</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Blog</a></li>
+          <li><a href="#" class="hover:text-indigo-500">Newsletter</a></li>
+        </ul>
+      </div>
+  
+      <!-- Newsletter Signup -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Subscribe Us</h3>
+        <form action="" class="space-y-4">
+          <input type="email" name="email" placeholder="info@yourmail.com" class="w-full bg-gray-800 py-2 px-4 rounded-full focus:outline-none text-gray-300">
+          <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-full w-full">
+            <ion-icon name="paper-plane-outline" class="mr-2"></ion-icon> Submit
+          </button>
+        </form>
+      </div>
+  
+    </div>
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-400">&copy; 2022 <a href="#" class="hover:text-indigo-500">jukumu</a>. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
     <script>
         const cities = {
             nairobi: { center: [-1.2921, 36.8219], zoom: 12 },
