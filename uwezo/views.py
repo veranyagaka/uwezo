@@ -7,8 +7,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
-from .models import Relationship, User, Post, Like, Comment
-from .forms import PostForm, CommentForm
+from .models import Relationship, User, Post, Like, Comment, IncidentReport
+from .forms import PostForm, CommentForm, IncidentReportForm
 
 def index(request):
     if request.user.is_authenticated:
@@ -207,6 +207,22 @@ def trending_posts(request):
 def recent_posts(request):
     posts = Post.objects.all().order_by('-created_at')[:10]  # 10 most recent posts
     return render(request, 'recent.html', {'posts': posts})
+def report_incident(request):
+    if request.method == 'POST':
+        form = IncidentReportForm(request.POST)
+        if form.is_valid():
+            incident = form.save(commit=False)
+            incident.user = request.user
+            incident.save()
+            messages.success(request, 'Incident reported successfully!')
+            return redirect('incident_report')
+    else:
+        form = IncidentReportForm()
+    
+    return render(request, 'report_incident.html', {'form': form})
+def track_progress(request):
+    incidents = IncidentReport.objects.filter(user=request.user)
+    return render(request, 'track_progress.html', {'incidents': incidents})
 '''
 # other stuff
 from .forms import ReportForm
