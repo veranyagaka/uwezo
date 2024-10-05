@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'community',
     'uwezo',
+    'mpesa',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# MPESA
+MPESA_CONSUMER_KEY = os.getenv('MPESA_CONSUMER_KEY', 'default_consumer_key')
+MPESA_ENVIRONMENT = 'sandbox'
+MPESA_CONSUMER_SECRET = os.getenv('MPESA_CONSUMER_SECRET')
+#MPESA_SHORTCODE = os.getenv('MPESA_SHORTCODE')
+#MPESA_PASSKEY = os.getenv('MPESA_PASSKEY')
+MPESA_CALLBACK_URL = ['jukumu.onrender.com', 'localhost', '127.0.0.1']
+
+MPESA_BASE_URL = os.getenv('MPESA_BASE_URL')
+
+
 
 
 # Internationalization

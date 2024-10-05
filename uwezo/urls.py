@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from mpesa.views import mpesa_callback
 urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', views.logout_view, name='logout'),
@@ -15,5 +16,7 @@ urlpatterns = [
     path('map/', views.map_view, name='map_view'),
     path('users/', views.user_list, name='user_list'),
     path('follow/<int:user_id>/', views.follow_unfollow, name='follow_unfollow'),
+
+    path('callback/', mpesa_callback, name='mpesa_callback')
 # add profile with image to look good
 ]
