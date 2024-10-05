@@ -53,6 +53,25 @@
         </div>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="lg:hidden fixed inset-0 bg-xiketic bg-opacity-90 z-50 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+        <div class="flex justify-end p-4">
+            <button id="menu-close-btn" class="text-white text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-4 p-4">
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+        </nav>
+    </div>
+
     <!-- Main Content -->
     <main class="pt-24 pb-12 px-4">
         <div class="container mx-auto">

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jukumu - Impact Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'xiketic': '#1a1f2e',
+                        'han-purple': '#5a4cb4',
+                        'custom-hover': '#ff5733',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-xiketic text-gray-300 font-poppins">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-xiketic py-5 transition-all duration-300 z-50" id="header">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="#" class="flex items-center text-white font-bold text-2xl">
+                <img src="./assets/images/logo.svg" width="68" height="48" alt="Jukumu Logo" class="mr-2">
+                Jukumu
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
+                <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
+                    <span class="mr-2">Contribute</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <button class="md:hidden text-white text-2xl" id="menu-open-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden fixed inset-0 bg-xiketic bg-opacity-90 z-50 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+        <div class="flex justify-end p-4">
+            <button id="menu-close-btn" class="text-white text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-4 p-4">
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
+            <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <h1 class="text-4xl font-bold mb-8 text-center text-han-purple">Impact Results</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Community Impact Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h3 class="text-3xl font-bold text-custom-hover mb-2">75%</h3>
+                    <p class="text-lg">Reduction in reported incidents</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h3 class="text-3xl font-bold text-custom-hover mb-2">10,000+</h3>
+                    <p class="text-lg">Community members engaged</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h3 class="text-3xl font-bold text-custom-hover mb-2">50+</h3>
+                    <p class="text-lg">Local initiatives launched</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h3 class="text-3xl font-bold text-custom-hover mb-2">90%</h3>
+                    <p class="text-lg">Increase in community trust</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Chart -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Progress Over Time</h2>
+            <div class="bg-gray-800 rounded-lg p-6">
+                <canvas id="progressChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Success Stories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img src="/placeholder.svg?height=200&width=400" alt="Community Garden" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Community Garden Initiative</h3>
+                        <p class="text-gray-400 mb-4">Local residents transformed an abandoned lot into a thriving community garden, providing fresh produce and a gathering space for neighbors.</p>
+                        <a href="#" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img src="/placeholder.svg?height=200&width=400" alt="Youth Mentorship Program" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Youth Mentorship Program</h3>
+                        <p class="text-gray-400 mb-4">Our mentorship program has helped 100 at-risk youth improve their academic performance and pursue higher education opportunities.</p>
+                        <a href="#" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Community Voices</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <p class="text-gray-400 mb-4">"Thanks to Jukumu, I feel safer walking in my neighborhood. The community watch program has made a real difference."</p>
+                    <p class="font-semibold text-white">- Sarah M., Community Member</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <p class="text-gray-400 mb-4">"The accountability measures implemented have significantly reduced corruption in our local government. Transparency has improved tremendously."</p>
+                    <p class="font-semibold text-white">- John D., Local Official</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <p class="text-gray-400 mb-4">"As a business owner, I've seen a positive change in the community. People are more engaged and supportive of local enterprises."</p>
+                    <p class="font-semibold text-white">- Emma L., Entrepreneur</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center">
+            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Be Part of the Change</h2>
+            <p class="text-lg mb-6">Your involvement can make a difference. Join us in creating a more accountable and thriving community.</p>
+            <a href="#" class="inline-block bg-han-purple text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-custom-hover transition duration-300">Get Involved Today</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-xiketic text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
+                        <img src="./assets/images/logo.svg" width="68" height="48" alt="Jukumu Logo" class="mr-2">
+                        Jukumu
+                    </a>
+                    <p class="mb-4">Empowering communities to stand against violence and promote accountability.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-custom-hover transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-custom-hover transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-custom-hover transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Home</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Report Incident</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Resource Center</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-custom-hover transition-colors">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="mb-4">Stay updated with our latest news and resources.</p>
+                    <form class="relative">
+                        <input type="email" placeholder="Your email address" required class="w-full bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-custom-hover">
+                        <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 bg-gradient-to-r from-han-purple to-custom-hover text-white rounded-r-md hover:from-custom-hover hover:to-han-purple transition-all duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2023 <a href="#" class="text-white hover:text-custom-hover transition-colors">Jukumu</a>. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="fixed bottom-4 right-4 bg-xiketic text-white p-2 rounded-full shadow-lg hidden hover:bg-custom-hover transition-colors" id="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const menuOpenBtn = document.getElementById('menu-open-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuOpenBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        menuCloseBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Progress Chart
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+                datasets: [{
+                    label: 'Community Engagement',
+                    data: [30, 45, 60, 70, 85, 95],
+                    borderColor: '#5a4cb4',
+                    backgroundColor: 'rgba(90, 76, 180, 0.1)',
+                    tension: 0.3
+                }, {
+                    label: 'Incident Reduction',
+                    data: [100, 85, 70, 55, 40, 25],
+                    borderColor: '#ff5733',
+                    backgroundColor: 'rgba(255, 87, 51, 0.1)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#e2e8f0'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#e2e8f0'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#e2e8f0'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
