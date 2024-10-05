@@ -195,7 +195,14 @@ def profiles_view(request):
     }
     
     return render(request, 'profile.html', context)
+def trending_posts(request):
+    posts = Post.objects.all().order_by('-likes', '-comments')[:10]  #10 trending posts
+    return render(request, 'trending.html', {'posts': posts})
 
+# ordered by creation date
+def recent_posts(request):
+    posts = Post.objects.all().order_by('-created_at')[:10]  # 10 most recent posts
+    return render(request, 'recent.html', {'posts': posts})
 '''
 # other stuff
 from .forms import ReportForm
