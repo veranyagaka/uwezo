@@ -5,9 +5,9 @@
         <h3>Community Accountability Platform</h3>
         <nav>
             <ul>
-                <li><a href="#">Report Incident</a></li>
+                <li><a href="{% url 'report_incident' %}">Report Incident</a></li>
                 <li><a href="#">Hotspot Map</a></li>
-                <li><a href="#">Track Progress</a></li>
+                <li><a href="{% url 'track_progress' %}">Track Progress</a></li>
                 <li><a href="{% url 'trending' %}">What's Trending</a></li>
                 <li><a href="{% url 'recent' %}">Recent Posts</a></li>
                 {% if user.is_authenticated %}

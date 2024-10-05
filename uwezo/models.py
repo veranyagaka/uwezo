@@ -51,3 +51,16 @@ class Relationship(models.Model):
 
     def __str__(self):
         return f'{self.follower.username} follows {self.following.username}'
+class IncidentReport(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('in_progress', 'In Progress'),
+        ('resolved', 'Resolved'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    location = models.CharField(max_length=255)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    date_reported = models.DateTimeField(auto_now_add=True)
