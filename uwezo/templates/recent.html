@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending Posts</title>
+    <title>Recent Posts</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Trending Posts</h1>
+    <h1>Recent Posts</h1>
     <hr>
     <div class="post-list">
         {% for post in posts %}
         <div class="post">
             <h3>{{ post.user.username }}</h3>
             <p>{{ post.content }}</p>
-            <p>Likes: {{ post.likes }} | Comments: {{ post.comments }}</p>
+            <p>Posted on: {{ post.created_at }}</p>
             <hr>
         </div>
         {% endfor %}

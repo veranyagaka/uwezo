@@ -165,8 +165,44 @@ def follow_unfollow(request, user_id):
     except User.DoesNotExist:
         messages.error(request, "User not found.")
         return redirect('user_list')
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
 
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
+    
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
+def profiles_view(request):
+    #user = get_object_or_404(User, username=username)
+    user = request.user  # Get the currently logged-in user
+    if not user.is_authenticated:
+        return redirect('index') 
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
+    
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
+def trending_posts(request):
+    posts = Post.objects.all().order_by('-likes', '-comments')[:10]  #10 trending posts
+    return render(request, 'trending.html', {'posts': posts})
 
+# ordered by creation date
+def recent_posts(request):
+    posts = Post.objects.all().order_by('-created_at')[:10]  # 10 most recent posts
+    return render(request, 'recent.html', {'posts': posts})
 '''
 # other stuff
 from .forms import ReportForm
