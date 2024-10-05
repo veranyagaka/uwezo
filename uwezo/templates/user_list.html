@@ -1,3 +1,26 @@
+<h2>Users</h2>
+
+<ul>
+    {% for user in users %}
+        <li>
+            {{ user.username }}
+            {% if user.id in following %}
+                <!-- If the user is already followed, show Unfollow button -->
+                <form method="POST" action="{% url 'follow_unfollow' user.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Unfollow</button>
+                </form>
+            {% else %}
+                <!-- If the user is not followed, show Follow button -->
+                <form method="POST" action="{% url 'follow_unfollow' user.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Follow</button>
+                </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

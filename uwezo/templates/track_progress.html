@@ -1,0 +1,10 @@
+<h1>Track Progress</h1>
+<ul>
+    {% for incident in incidents %}
+        <li>
+            <strong>{{ incident.title }}</strong> - {{ incident.status }}
+        </li>
+    {% empty %}
+        <p>No incidents reported.</p>
+    {% endfor %}
+</ul>

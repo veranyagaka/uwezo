@@ -1,6 +1,6 @@
 from django import forms
 #from .models import Report
-from .models import Post, Comment
+from .models import Post, Comment, IncidentReport
 '''
 class ReportForm(forms.ModelForm):
     class Meta:
@@ -23,3 +23,7 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write a comment...'}),
         }
+class IncidentReportForm(forms.ModelForm):
+    class Meta:
+        model = IncidentReport
+        fields = ['title', 'description', 'location']

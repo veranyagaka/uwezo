@@ -7,17 +7,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
-from .models import Relationship, User, Post, Like, Comment
-from .forms import PostForm, CommentForm
-
-# Defining API views (inserted by Osborn)
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-# myapp/views.py
-from rest_framework import generics
-from .models import Relationship, Post, Like, Comment
+from .models import Relationship, User, Post, Like, Comment, IncidentReport
+from .forms import PostForm, CommentForm, IncidentReportForm
 
 def index(request):
+    if request.user.is_authenticated:
+        print('user is already logged in. redirecting')
+        return redirect('dashboard')
+    
     login_form = AuthenticationForm()
     signup_form = UserCreationForm()
 
@@ -172,13 +169,60 @@ def follow_unfollow(request, user_id):
     except User.DoesNotExist:
         messages.error(request, "User not found.")
         return redirect('user_list')
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
     
-@api_view(['GET'])
-def get_data(request):
-    data = {"message": "Hello from Django!"}
-    return Response(data)
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
+def profiles_view(request):
+    #user = get_object_or_404(User, username=username)
+    user = request.user  # Get the currently logged-in user
+    if not user.is_authenticated:
+        return redirect('index') 
+    # Count followers and following
+    follower_count = user.followers.count()
+    following_count = user.following.count()
+    
+    context = {
+        'user_profile': user,
+        'follower_count': follower_count,
+        'following_count': following_count,
+    }
+    
+    return render(request, 'profile.html', context)
+def trending_posts(request):
+    posts = Post.objects.all().order_by('-likes', '-comments')[:10]  #10 trending posts
+    return render(request, 'trending.html', {'posts': posts})
 
-
+# ordered by creation date
+def recent_posts(request):
+    posts = Post.objects.all().order_by('-created_at')[:10]  # 10 most recent posts
+    return render(request, 'recent.html', {'posts': posts})
+def report_incident(request):
+    if request.method == 'POST':
+        form = IncidentReportForm(request.POST)
+        if form.is_valid():
+            incident = form.save(commit=False)
+            incident.user = request.user
+            incident.save()
+            messages.success(request, 'Incident reported successfully!')
+            return redirect('incident_report')
+    else:
+        form = IncidentReportForm()
+    
+    return render(request, 'report_incident.html', {'form': form})
+def track_progress(request):
+    incidents = IncidentReport.objects.filter(user=request.user)
+    return render(request, 'track_progress.html', {'incidents': incidents})
 '''
 # other stuff
 from .forms import ReportForm

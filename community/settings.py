@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--x9axu2y+p1%a(!5gd*feobft!#1e2mq@z-5@ya4%1&fq&*e07
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jukumu.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'community',
     'uwezo',
+    'mpesa',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+ALLAN = os.getenv('ALLAN', 'veraaaa')
+# MPESA
+MPESA_CONSUMER_KEY = os.getenv('MPESA_CONSUMER_KEY')
+MPESA_ENVIRONMENT = 'sandbox'
+MPESA_CONSUMER_SECRET = os.getenv('MPESA_CONSUMER_SECRET')
+MPESA_SHORTCODE = os.getenv('MPESA_SHORTCODE')
+MPESA_PASSKEY = os.getenv('MPESA_PASSKEY')
+MPESA_CALLBACK_URL = 'https://jukumu.onrender.com/callback/'
+MPESA_BASE_URL ='https://sandbox.safaricom.co.ke'
+
+
 
 
 # Internationalization

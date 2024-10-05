@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>{{ user_profile.username }}'s Profile</h1>
+        {% if not user_profile.email %}
+            <div class="alert alert-warning">
+                <p>Email is not set! Please update your email.</p>
+            </div> 
+        {% else %}
+            <p>Email: {{ user_profile.email }}</p>
+        {% endif %}
+        <div class="follow-stats">
+            <p>Followers: {{ follower_count }}</p>
+            <p>Following: {{ following_count }}</p>
+        </div>
+    </div>  
+</body>
+</html>
