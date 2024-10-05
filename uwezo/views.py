@@ -11,6 +11,10 @@ from .models import Relationship, User, Post, Like, Comment
 from .forms import PostForm, CommentForm
 
 def index(request):
+    if request.user.is_authenticated:
+        print('user is already logged in. redirecting')
+        return redirect('dashboard')
+    
     login_form = AuthenticationForm()
     signup_form = UserCreationForm()
 
