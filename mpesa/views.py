@@ -14,10 +14,7 @@ def get_mpesa_token():
     consumer_key = settings.MPESA_CONSUMER_KEY
     consumer_secret = settings.MPESA_CONSUMER_SECRET
     API_URL = f"{settings.MPESA_BASE_URL}/oauth/v1/generate?grant_type=client_credentials"
-    print(settings.MPESA_CONSUMER_KEY)
-    print(settings.MPESA_CONSUMER_SECRET)
 
-    print(API_URL)
     response = requests.get(API_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
     if response.status_code == 200:
         json_response = response.json()
@@ -36,6 +33,9 @@ def lipa_na_mpesa(phone_number, amount):
     }
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode(f"{settings.MPESA_SHORTCODE}{settings.MPESA_PASSKEY}{timestamp}".encode()).decode('utf-8')
+    print(settings.MPESA_SHORTCODE)
+    print(settings.MPESA_PASSKEY)
+
     payload = {
         "BusinessShortCode": settings.MPESA_SHORTCODE,
         "Password": password,
@@ -50,6 +50,7 @@ def lipa_na_mpesa(phone_number, amount):
         "TransactionDesc": "Pay school fees"
     }
     response = requests.post(API_URL, json=payload, headers=headers)
+    print(f"Token response: {response.text}") 
     return response.json()
 
 @csrf_exempt
