@@ -35,6 +35,9 @@ def lipa_na_mpesa(phone_number, amount):
     password = base64.b64encode(f"{settings.MPESA_SHORTCODE}{settings.MPESA_PASSKEY}{timestamp}".encode()).decode('utf-8')
     print(settings.MPESA_SHORTCODE)
     print(settings.MPESA_PASSKEY)
+    print(password)
+    print(timestamp)
+    print(settings.MPESA_CALLBACK_URL)
 
     payload = {
         "BusinessShortCode": settings.MPESA_SHORTCODE,
@@ -44,11 +47,14 @@ def lipa_na_mpesa(phone_number, amount):
         "Amount": amount,
         "PartyA": phone_number,
         "PartyB": settings.MPESA_SHORTCODE,
-        "PhoneNumber": 254708374149,
+        "PhoneNumber": phone_number,
         "CallBackURL": settings.MPESA_CALLBACK_URL,
         "AccountReference": "123456",
         "TransactionDesc": "Pay school fees"
     }
+    print("API URL:", API_URL)
+    print("Headers:", headers)
+    print("Payload:", payload)
     response = requests.post(API_URL, json=payload, headers=headers)
     print(f"Token response: {response.text}") 
     return response.json()

@@ -1,4 +1,5 @@
 <h1>Welcome, {{ user.username }}!</h1> 
+<title>Your Dashboard</title>
 <h2>Dashboard</h2>
 <header>
     <div class="container">
@@ -21,12 +22,6 @@
         </nav>
     </div>
 </header>
-<!-- Post creation form -->
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }} <!-- Lets add attachments such as videos or images, audio?-->
-    <button type="submit" class="btn btn-primary">Create Post</button>
-</form>
 
 <hr>
 
@@ -46,6 +41,21 @@
         <li>
             <strong>{{ post.user.username }}</strong>: {{ post.content }} 
             <em>at {{ post.created_at }}</em>
+            {% if post.is_edited %}
+                <em>(edited)</em>
+            {% endif %}
+
+            <!-- Edit button -->
+            <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit</a>
+
+            <!-- Delete button -->
+            <form method="POST" action="{% url 'delete_post' post.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
+            </form>
+
+            <!-- Share button -->
+            <a href="{% url 'share_post' post.id %}" class="btn btn-secondary">Share</a>
 
             <!-- Like button -->
             <form method="POST" action="">
