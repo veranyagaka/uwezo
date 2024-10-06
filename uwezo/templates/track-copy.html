@@ -35,12 +35,12 @@
         }
     </style>
     <!-- React and ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- Babel for JSX support -->
-    <script src="https://unpkg.com/@babel/standalone@7.22.5/babel.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <!-- React Circular Progressbar -->
-    <script src="https://unpkg.com/react-circular-progressbar@2.1.0/dist/index.umd.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-circular-progressbar@2.1.0/dist/index.umd.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/react-circular-progressbar@2.1.0/dist/styles.css">
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
@@ -77,43 +77,10 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="lg:hidden fixed inset-0 bg-xiketic bg-opacity-90 z-50 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
-        <div class="flex justify-end p-4">
-            <button id="menu-close-btn" class="text-white text-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <nav class="flex flex-col items-center space-y-4 p-4">
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
-        </nav>
-    </div>
-
     <!-- Main Content -->
     <main class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12 centered-content">
         <h1 class="text-4xl font-bold custom-color mb-8">Track Progress</h1>
         <div id="react-app"></div>
-        
-        <!-- Django Template Section -->
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold custom-color mb-4">Incident List</h2>
-            <ul class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                {% for incident in incidents %}
-                    <li class="mb-2">
-                        <strong class="text-white">{{ incident.title }}</strong> - {{ incident.status }}
-                    </li>
-                {% empty %}
-                    <p class="text-gray-400">No incidents reported.</p>
-                {% endfor %}
-            </ul>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -300,13 +267,21 @@
         const menuOpenBtn = document.getElementById('menu-open-btn');
         const menuCloseBtn = document.getElementById('menu-close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         menuOpenBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('translate-x-full');
+            mobileMenuOverlay.classList.remove('hidden');
         });
 
         menuCloseBtn.addEventListener('click', () => {
             mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
         });
 
         // Header scroll effect

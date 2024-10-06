@@ -13,6 +13,9 @@
                         'xiketic': '#1a1f2e',
                         'han-purple': '#5a4cb4',
                         'custom-hover': '#ff5733',
+                    },
+                    maxWidth: {
+                        '8xl': '88rem',
                     }
                 }
             }
@@ -20,27 +23,38 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .custom-color {
+            color: #ff5733;
+        }
+    </style>
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full bg-xiketic py-5 transition-all duration-300 z-50" id="header">
-        <div class="container mx-auto px-4 flex items-center justify-between">
+    <header class="fixed top-0 left-0 w-full bg-xiketic py-3 transition-all duration-300 z-50" id="header">
+        <div class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between">
             <a href="#" class="flex items-center text-white font-bold text-2xl">
                 <img src="../assets/images/logo.png" width="68" height="48" alt="Jukumu Logo" class="mr-2">
                 Jukumu
             </a>
 
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+                <a href="dashboard.html" class="text-white hover:text-custom-hover transition-colors">Home</a>
+                <a href="report.html" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+                <a href="hotspot.html" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
+                <a href="track_progress.html" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
+                <a href="community.html" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
+                <a href="about.html" class="text-white hover:text-custom-hover transition-colors">Contact</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
+                <a href="contribution.html" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
                     <span class="mr-2">Contribute</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -65,8 +79,8 @@
             </button>
         </div>
         <nav class="flex flex-col items-center space-y-4 p-4">
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-            <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+            <a href="dashboard.html" class="text-white hover:text-custom-hover transition-colors">Home</a>
+            <a href="report.html" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
             <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
             <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
             <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
@@ -75,11 +89,11 @@
     </div>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pt-24 pb-12">
-        <h1 class="text-4xl font-bold mb-8 text-center text-han-purple">Trending Accountability Actions</h1>
+    <main class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12 centered-content">
+        <h1 class="text-4xl font-bold mb-8 text-center custom-color">Trending Accountability Actions</h1>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Crime Reporting Trends</h2>
+        <section class="mb-12 w-full">
+            <h2 class="text-2xl font-semibold mb-6 custom-color">Crime Reporting Trends</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
                     <img src="https://picsum.photos/seed/crime1/400/200" alt="Crime Reporting" class="w-full h-48 object-cover">
@@ -105,8 +119,8 @@
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Community Support Initiatives</h2>
+        <section class="mb-12 w-full">
+            <h2 class="text-2xl font-semibold mb-6 custom-color">Community Support Initiatives</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
                     <img src="https://picsum.photos/seed/support1/400/200" alt="Volunteer Hours" class="w-full h-48 object-cover">
@@ -132,8 +146,8 @@
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold mb-6 text-han-purple">Environmental Accountability</h2>
+        <section class="mb-12 w-full">
+            <h2 class="text-2xl font-semibold mb-6 custom-color">Environmental Accountability</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
                     <img src="https://picsum.photos/seed/env1/400/200" alt="Tree Planting" class="w-full h-48 object-cover">
@@ -159,8 +173,8 @@
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold mb-6 text-center text-han-purple">Join the Movement</h2>
+        <section class="mb-12 w-full">
+            <h2 class="text-2xl font-semibold mb-6 text-center custom-color">Join the Movement</h2>
             <div class="max-w-2xl mx-auto text-center">
                 <p class="text-lg mb-6">Be part of the change. Report incidents, support your community, and help create a safer, more accountable society.</p>
                 <a href="contribution.html" class="inline-block bg-han-purple text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-custom-hover transition duration-300">Get Involved Now</a>
@@ -170,7 +184,7 @@
 
     <!-- Footer -->
     <footer class="bg-xiketic text-gray-300 py-12">
-        <div class="container mx-auto px-4">
+        <div class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="mb-8 md:mb-0">
                     <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
@@ -248,6 +262,16 @@
 
         menuCloseBtn.addEventListener('click', () => {
             mobileMenu.classList.add('translate-x-full');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
         });
 
         // Back to top button functionality
