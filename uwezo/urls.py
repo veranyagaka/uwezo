@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from mpesa.views import mpesa_callback
+from mpesa.views import mpesa_callback, mpesa
 urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', views.logout_view, name='logout'),
@@ -24,5 +24,7 @@ urlpatterns = [
     path('post/<int:post_id>/share/', views.share_post, name='share_post'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
 
+    path('mpesa/', mpesa, name='mpesa'),
+    
 # add profile with image to look good
 ]

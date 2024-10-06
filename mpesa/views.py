@@ -1,6 +1,9 @@
 from django.shortcuts import render
-
-# Create your views here.
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.backends import default_backend
+from cryptography import x509
+# Create your views here./home/vera/community/certs
 import requests
 from requests.auth import HTTPBasicAuth
 from django.conf import settings
@@ -10,6 +13,27 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 print(settings.ALLAN)
+def encrypt_security_credential(security_credential):
+    # Load the certificate
+    with open('/home/vera/community/certs/SandboxCertificate.cer', 'rb') as f:
+        cert_data = f.read()
+    certificate = x509.load_pem_x509_certificate(cert_data, default_backend())
+
+    # Encrypt the security credential
+    public_key = certificate.public_key()
+    encrypted_credential = public_key.encrypt(
+        security_credential.encode(),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+
+    # Base64 encode the encrypted credential
+    encoded_credential = base64.b64encode(encrypted_credential).decode('utf-8')
+    return encoded_credential
+
 def get_mpesa_token():
     consumer_key = settings.MPESA_CONSUMER_KEY
     consumer_secret = settings.MPESA_CONSUMER_SECRET
@@ -26,10 +50,13 @@ def get_mpesa_token():
     return json_response['access_token']
 
 def lipa_na_mpesa(phone_number, amount):
+    encrypted_credential = encrypt_security_credential(settings.MPESA_SECURITY_CREDENTIAL)
+
     access_token = get_mpesa_token()
     API_URL = f"{settings.MPESA_BASE_URL}/mpesa/stkpush/v1/processrequest"
     headers = {
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
     }
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode(f"{settings.MPESA_SHORTCODE}{settings.MPESA_PASSKEY}{timestamp}".encode()).decode('utf-8')
@@ -51,6 +78,7 @@ def lipa_na_mpesa(phone_number, amount):
         "CallBackURL": settings.MPESA_CALLBACK_URL,
         "AccountReference": "123456",
         "TransactionDesc": "Pay school fees"
+        #"SecurityCredential": encrypted_credential 
     }
     print("API URL:", API_URL)
     print("Headers:", headers)
@@ -69,5 +97,7 @@ def mpesa_callback(request):
     return JsonResponse({"ResultDesc": "Failed", "ResultCode": "1"}, status=400)
 
 print('Hi vera')
+def mpesa(request):
+    return render(request, 'mpesa.html')
 response = lipa_na_mpesa('254759626842', 1)
 print(response)
