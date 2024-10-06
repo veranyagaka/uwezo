@@ -83,7 +83,6 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 pt-24 pb-12">
-<<<<<<< HEAD
         <h1 class="text-4xl font-bold text-custom-hover mb-8">Community Forum</h1>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -95,23 +94,6 @@
                     <input type="file" id="post-media" class="hidden" accept="image/*,video/*">
                     <button id="add-media" class="bg-custom-hover text-white rounded-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none mr-2 transition duration-300">Add Media</button>
                     <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none transition duration-300">Submit Post</button>
-=======
-        <h1 class="text-4xl font-bold text-[#ff5733] mb-8">Community Forum</h1>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column -->
-            <div class="lg:col-span-1 space-y-8">
-                <!-- Community Info -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Community Info</h2>
-                    <p class="mb-4">Welcome to our community! Share your thoughts, ideas, and experiences with others.</p>
-                    <h3 class="text-lg font-semibold mb-2 text-[#ff5733]">Rules</h3>
-                    <ul class="list-disc pl-5 mb-6 text-gray-400">
-                        <li>Be respectful to others</li>
-                        <li>No spam or self-promotion</li>
-                        <li>Use appropriate tags for your posts</li>
-                    </ul>
->>>>>>> vera
                 </div>
 
                 <!-- Trending Topics -->
@@ -154,7 +136,6 @@
                     <!-- Posts will be dynamically added here -->
                 </div>
             </div>
-<<<<<<< HEAD
             
             <aside class="bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow">
                 <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Community Info</h2>
@@ -174,8 +155,6 @@
                     <button id="send-chat" class="bg-custom-hover text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
                 </div>
             </aside>
-=======
->>>>>>> vera
         </div>
     </main>
 
@@ -225,11 +204,7 @@
                     <p class="mb-4">Stay updated with our latest news and resources.</p>
                     <form class="relative">
                         <input type="email" placeholder="Your email address" required class="w-full bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-custom-hover">
-<<<<<<< HEAD
                         <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 bg-custom-hover text-white rounded-r-md hover:bg-opacity-80 transition-all duration-300">
-=======
-                        <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 bg-gradient-to-r from-[#ff5733] to-custom-hover text-white rounded-r-md hover:from-custom-hover hover:to-[#ff5733] transition-all duration-300">
->>>>>>> vera
                             Subscribe
                         </button>
                     </form>
@@ -279,11 +254,7 @@
             const postElement = document.createElement('div');
             postElement.className = 'bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow transition duration-300 hover:shadow-xl';
             postElement.innerHTML = `
-<<<<<<< HEAD
                 <h3 class="text-xl font-semibold mb-2 text-custom-hover">${post.title}</h3>
-=======
-                <h3 class="text-xl font-semibold mb-2 text-[#ff5733]">${post.title}</h3>
->>>>>>> vera
                 <p class="mb-4 text-gray-400">${post.content}</p>
                 ${post.media ? `<div class="mb-4">
                     ${post.media.type === 'image' 
@@ -296,11 +267,7 @@
                         <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-custom-hover focus:outline-none transition duration-300">
                             <i class="fas fa-arrow-up mr-1"></i>${post.upvotes}
                         </button>
-<<<<<<< HEAD
                         <button class="verify-btn ${post.verified ? 'bg-green-500' : 'bg-custom-hover'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none transition duration-300">
-=======
-                        <button class="verify-btn ${post.verified ? 'bg-green-500' : 'bg-[#ff5733]'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none transition duration-300">
->>>>>>> vera
                             <i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}
                         </button>
                         <button class="icon-btn love-btn ${post.loved ? 'text-custom-hover' : 'text-white'} px-2 py-1 rounded-lg focus:outline-none transition duration-300">
