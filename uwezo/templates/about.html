@@ -1,34 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Profile</title>
-</head>
-<body>
-    <div class="profile-container">
-        <h1>{{ user_profile.username }}'s Profile</h1>
-        {% if not user_profile.email %}
-            <div class="alert alert-warning">
-                <p>Email is not set! Please update your email.</p>
-            </div> 
-        {% else %}
-            <p>Email: {{ user_profile.email }}</p>
-        {% endif %}
-        <div class="follow-stats">
-            <p>Followers: {{ follower_count }}</p>
-            <p>Following: {{ following_count }}</p>
-        </div>
-    </div>  
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user_profile.username }}'s Profile - Jukumu</title>
+    <title>Jukumu - About Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -106,30 +81,90 @@
 
     <!-- Main Content -->
     <main class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
-        <div class="bg-gray-800 rounded-lg p-8 shadow-lg">
-            <h1 class="text-4xl font-bold text-white mb-8">{{ user_profile.username }}'s Profile</h1>
-            
-            {% if not user_profile.email %}
-                <div class="bg-yellow-400 text-yellow-900 px-4 py-3 rounded-md mb-6">
-                    <p class="font-semibold">Email is not set! Please update your email.</p>
-                </div> 
-            {% else %}
-                <p class="text-gray-300 mb-6">Email: {{ user_profile.email }}</p>
-            {% endif %}
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-gray-700 rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold text-han-purple mb-2">Followers</h2>
-                    <p class="text-4xl font-bold text-white">{{ follower_count }}</p>
+        <h1 class="text-4xl font-bold text-white mb-8">About Jukumu</h1>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Mission</h2>
+            <p class="text-gray-300 mb-4">Jukumu is dedicated to empowering communities to stand against violence and promote accountability. We believe that by working together, we can create safer, more transparent, and more just societies.</p>
+            <p class="text-gray-300 mb-4">Our platform provides tools for reporting incidents, tracking progress, and fostering community engagement to address issues of violence and accountability in Kenya and beyond.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-han-purple mb-4">What We Do</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Incident Reporting</h3>
+                    <p class="text-gray-400">Our platform allows users to easily report incidents of violence or corruption, ensuring that no voice goes unheard.</p>
                 </div>
-                <div class="bg-gray-700 rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold text-han-purple mb-2">Following</h2>
-                    <p class="text-4xl font-bold text-white">{{ following_count }}</p>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Hotspot Mapping</h3>
+                    <p class="text-gray-400">We provide visual representations of reported incidents, helping to identify areas that need immediate attention and resources.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Progress Tracking</h3>
+                    <p class="text-gray-400">Users can track the progress of reported incidents and see how local authorities and communities are responding to issues.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Community Forum</h3>
+                    <p class="text-gray-400">Our platform hosts a vibrant community forum where users can discuss issues, share experiences, and collaborate on solutions.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Resource Center</h3>
+                    <p class="text-gray-400">We provide a comprehensive resource center with information on legal rights, support services, and educational materials.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Data Analysis</h3>
+                    <p class="text-gray-400">We analyze reported data to identify trends and patterns, helping to inform policy decisions and community actions.</p>
                 </div>
             </div>
-            
-            <a href="#" class="inline-block bg-han-purple text-white px-6 py-3 rounded-lg hover:bg-custom-hover transition duration-300">Edit Profile</a>
-        </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Impact</h2>
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <p class="text-4xl font-bold text-custom-hover mb-2">10,000+</p>
+                        <p class="text-gray-400">Incidents Reported</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-custom-hover mb-2">500+</p>
+                        <p class="text-gray-400">Communities Served</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-custom-hover mb-2">85%</p>
+                        <p class="text-gray-400">Resolution Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
+                    <img src="/placeholder.svg?height=150&width=150" alt="John Doe" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">John Doe</h3>
+                    <p class="text-gray-400">Founder & CEO</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
+                    <img src="/placeholder.svg?height=150&width=150" alt="Jane Smith" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Jane Smith</h3>
+                    <p class="text-gray-400">Chief Technology Officer</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
+                    <img src="/placeholder.svg?height=150&width=150" alt="David Johnson" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">David Johnson</h3>
+                    <p class="text-gray-400">Community Outreach Director</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold text-han-purple mb-4">Join Us</h2>
+            <p class="text-gray-300 mb-4">We believe that everyone has a role to play in creating safer and more accountable communities. Join us in our mission to make a difference.</p>
+            <a href="#" class="inline-block bg-han-purple text-white px-6 py-3 rounded-lg hover:bg-custom-hover transition duration-300">Get Involved</a>
+        </section>
     </main>
 
     <!-- Footer -->
