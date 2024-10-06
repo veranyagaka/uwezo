@@ -339,11 +339,7 @@
             verifyBtn.addEventListener('click', () => {
                 post.verified = !post.verified;
                 verifyBtn.classList.toggle('bg-green-500');
-<<<<<<< HEAD
                 verifyBtn.classList.toggle('bg-custom-hover');
-=======
-                verifyBtn.classList.toggle('bg-[#ff5733]');
->>>>>>> vera
                 verifyBtn.innerHTML = `<i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}`;
             });
 
@@ -418,11 +414,7 @@
             if (e.target.files.length > 0) {
                 addMediaButton.textContent = 'Media Added';
                 addMediaButton.classList.add('bg-green-500');
-<<<<<<< HEAD
                 addMediaButton.classList.remove('bg-custom-hover');
-=======
-                addMediaButton.classList.remove('bg-[#ff5733]');
->>>>>>> vera
             }
         });
 
@@ -464,11 +456,7 @@
                 postMedia.value = '';
                 addMediaButton.textContent = 'Add Media';
                 addMediaButton.classList.remove('bg-green-500');
-<<<<<<< HEAD
                 addMediaButton.classList.add('bg-custom-hover');
-=======
-                addMediaButton.classList.add('bg-[#ff5733]');
->>>>>>> vera
             }
         });
 
