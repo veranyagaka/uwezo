@@ -11,6 +11,7 @@ import base64
 from datetime import datetime
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import redirect
 import json
 print(settings.ALLAN)
 def encrypt_security_credential(security_credential):
@@ -99,5 +100,18 @@ def mpesa_callback(request):
 print('Hi vera')
 def mpesa(request):
     return render(request, 'mpesa.html')
-response = lipa_na_mpesa('254759626842', 1)
-print(response)
+def process_payment(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        amount = request.POST.get('amount')
+
+        response = lipa_na_mpesa(phone_number, amount)
+
+        if response.get('ResponseCode') == '0':  # Success response from M-Pesa
+            return JsonResponse({"message": "Payment successful", "data": response})
+        else:
+            return JsonResponse({"message": "Payment failed", "error": response})
+
+    return redirect('mpesa')
+#response = lipa_na_mpesa('254759626842', 1)
+#print(response)
