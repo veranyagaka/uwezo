@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'community',
     'uwezo',
     'mpesa',
+    'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +117,7 @@ MPESA_CALLBACK_URL = 'https://jukumu.onrender.com/callback/'
 MPESA_BASE_URL ='https://sandbox.safaricom.co.ke'
 
 
-
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', '/usr/lib/libgdal.so')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

@@ -248,19 +248,10 @@ def share_post(request, post_id):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'post_detail.html', {'post': post})
-'''
-# other stuff
-from .forms import ReportForm
-
-def map(request):
-    if request.method == 'POST':
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('report_list')  # Redirect to a list of reports
-    else:
-        form = ReportForm()
-    return render(request, 'result.html', {'form': form})
-'''
 def map_view(request):
-    return render(request, 'maps.html')
+    context = {
+        'latitude': -1.286389, 
+        'longitude': 36.817223,  
+    }
+    return render(request, 'map.html', context)
+
