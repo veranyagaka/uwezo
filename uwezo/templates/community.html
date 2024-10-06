@@ -20,6 +20,11 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .custom-shadow {
+            box-shadow: 0 4px 6px -1px rgba(255, 87, 51, 0.1), 0 2px 4px -1px rgba(255, 87, 51, 0.06);
+        }
+    </style>
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
@@ -40,7 +45,7 @@
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
+                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-custom-hover text-custom-hover rounded-full hover:bg-custom-hover hover:text-white transition-all duration-300">
                     <span class="mr-2">Contribute</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -67,50 +72,87 @@
             </button>
         </div>
         <ul class="p-5 space-y-4">
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Home</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Report Incident</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Hotspot Map</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Track Progress</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Community Forum</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Contact</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Home</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Report Incident</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Track Progress</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Community Forum</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 pt-24 pb-12">
-        <h1 class="text-4xl font-bold text-white mb-8">Community Forum</h1>
+        <h1 class="text-4xl font-bold text-custom-hover mb-8">Community Forum</h1>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="md:col-span-2">
-                <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-han-purple">Create a New Post</h2>
-                    <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-han-purple" placeholder="Post Title">
-                    <textarea id="post-content" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-han-purple" rows="3" placeholder="Post Content"></textarea>
+                <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg custom-shadow">
+                    <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Create a New Post</h2>
+                    <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Post Title">
+                    <textarea id="post-content" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-custom-hover" rows="3" placeholder="Post Content"></textarea>
                     <input type="file" id="post-media" class="hidden" accept="image/*,video/*">
-                    <button id="add-media" class="bg-han-purple text-white rounded-lg px-4 py-2 hover:bg-custom-hover focus:outline-none mr-2 transition duration-300">Add Media</button>
+                    <button id="add-media" class="bg-custom-hover text-white rounded-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none mr-2 transition duration-300">Add Media</button>
                     <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none transition duration-300">Submit Post</button>
                 </div>
-                <div id="posts-container" class="space-y-6">
+
+                <!-- Trending Topics -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Trending Topics</h2>
+                    <ul class="space-y-2" id="trending-topics">
+                        <!-- Trending topics will be dynamically added here -->
+                    </ul>
+                </div>
+
+                <!-- Live Chat -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Live Chat</h2>
+                    <div class="bg-gray-700 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-messages">
+                        <!-- Chat messages will be dynamically added here -->
+                    </div>
+                    <div class="flex">
+                        <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Type your message...">
+                        <button id="send-chat" class="bg-[#ff5733] text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Create New Post -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Create a New Post</h2>
+                    <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Post Title">
+                    <textarea id="post-content" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" rows="3" placeholder="Post Content"></textarea>
+                    <input type="file" id="post-media" class="hidden" accept="image/*,video/*">
+                    <div class="flex justify-between">
+                        <button id="add-media" class="bg-[#ff5733] text-white rounded-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Add Media</button>
+                        <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none transition duration-300">Submit Post</button>
+                    </div>
+                </div>
+
+                <!-- Posts Container -->
+                <div id="posts-container" class="space-y-8">
                     <!-- Posts will be dynamically added here -->
                 </div>
             </div>
             
-            <aside class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                <h2 class="text-xl font-semibold mb-4 text-han-purple">Community Info</h2>
+            <aside class="bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow">
+                <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Community Info</h2>
                 <p class="mb-4">Welcome to our community! Share your thoughts, ideas, and experiences with others.</p>
-                <h3 class="text-lg font-semibold mb-2 text-han-purple">Rules</h3>
+                <h3 class="text-xl font-semibold mb-2 text-custom-hover">Rules</h3>
                 <ul class="list-disc pl-5 mb-6 text-gray-400">
                     <li>Be respectful to others</li>
                     <li>No spam or self-promotion</li>
                     <li>Use appropriate tags for your posts</li>
                 </ul>
-                <h2 class="text-xl font-semibold mb-4 text-han-purple">Live Chat</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Live Chat</h2>
                 <div class="bg-gray-700 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-messages">
                     <!-- Chat messages will be dynamically added here -->
                 </div>
                 <div class="flex">
-                    <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-han-purple" placeholder="Type your message...">
-                    <button id="send-chat" class="bg-han-purple text-white rounded-r-lg px-4 py-2 hover:bg-custom-hover focus:outline-none transition duration-300">Send</button>
+                    <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Type your message...">
+                    <button id="send-chat" class="bg-custom-hover text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
                 </div>
             </aside>
         </div>
@@ -162,7 +204,7 @@
                     <p class="mb-4">Stay updated with our latest news and resources.</p>
                     <form class="relative">
                         <input type="email" placeholder="Your email address" required class="w-full bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-custom-hover">
-                        <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 bg-gradient-to-r from-han-purple to-custom-hover text-white rounded-r-md hover:from-custom-hover hover:to-han-purple transition-all duration-300">
+                        <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 bg-custom-hover text-white rounded-r-md hover:bg-opacity-80 transition-all duration-300">
                             Subscribe
                         </button>
                     </form>
@@ -175,7 +217,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#top" class="fixed bottom-4 right-4 bg-xiketic text-white p-2 rounded-full shadow-lg hidden hover:bg-custom-hover transition-colors" id="back-to-top">
+    <a href="#top" class="fixed bottom-4 right-4 bg-custom-hover text-white p-2 rounded-full shadow-lg hidden hover:bg-opacity-80 transition-colors" id="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
@@ -191,31 +233,41 @@
         const postMedia = document.getElementById('post-media');
         const addMediaButton = document.getElementById('add-media');
         const submitPostButton = document.getElementById('submit-post');
+        const trendingTopics = document.getElementById('trending-topics');
 
         let posts = [
-            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false, loved: false, media: { type: 'image', url: 'https://picsum.photos/seed/traffic/400/300' } },
-            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true, loved: true, media: { type: 'image', url: 'https://picsum.photos/seed/covid/400/300' } },
-            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false, loved: false, media: { type: 'video', url: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4' } },
+            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false, loved: false, media: { type: 'image', url: 'https://picsum.photos/seed/traffic/200/150' }, comments: [
+                { user: "User1", content: "Thanks for the heads up!" },
+                { user: "User2", content: "Any alternative routes suggested?" }
+            ] },
+            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true, loved: true, media: { type: 'image', url: 'https://picsum.photos/seed/covid/200/150' }, comments: [
+                { user: "User3", content: "Great news! Is it free?" },
+                { user: "User4", content: "What are the operating hours?" }
+            ] },
+            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false, loved: false, media: { type: 'video', url: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4' }, comments: [
+                { user: "User5", content: "Any idea when it will be fixed?" },
+                { user: "User6", content: "I've reported it to the power company." }
+            ] },
         ];
 
         function createPostElement(post) {
             const postElement = document.createElement('div');
-            postElement.className = 'bg-gray-800 rounded-lg p-6 shadow-lg transition duration-300 hover:shadow-xl';
+            postElement.className = 'bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow transition duration-300 hover:shadow-xl';
             postElement.innerHTML = `
-                <h3 class="text-xl font-semibold mb-2 text-han-purple">${post.title}</h3>
+                <h3 class="text-xl font-semibold mb-2 text-custom-hover">${post.title}</h3>
                 <p class="mb-4 text-gray-400">${post.content}</p>
                 ${post.media ? `<div class="mb-4">
                     ${post.media.type === 'image' 
-                        ? `<img src="${post.media.url}" alt="Post image" class="max-w-full h-auto rounded-lg">`
-                        : `<video src="${post.media.url}" controls class="max-w-full h-auto rounded-lg"></video>`
+                        ? `<img src="${post.media.url}" alt="Post image" class="w-48 h-36 object-cover rounded-lg">`
+                        : `<video src="${post.media.url}" controls class="w-48 h-36 object-cover rounded-lg"></video>`
                     }
                 </div>` : ''}
-                <div class="flex items-center justify-between flex-wrap">
+                <div class="flex items-center justify-between flex-wrap mb-4">
                     <div class="flex items-center space-x-2 mb-2 sm:mb-0">
-                        <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-gray-600 focus:outline-none transition duration-300">
+                        <button class="upvote-btn bg-gray-700 text-white px-3 py-1 rounded-lg hover:bg-custom-hover focus:outline-none transition duration-300">
                             <i class="fas fa-arrow-up mr-1"></i>${post.upvotes}
                         </button>
-                        <button class="verify-btn ${post.verified ? 'bg-green-500' : 'bg-han-purple'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none transition duration-300">
+                        <button class="verify-btn ${post.verified ? 'bg-green-500' : 'bg-custom-hover'} text-white px-3 py-1 rounded-lg hover:bg-opacity-80 focus:outline-none transition duration-300">
                             <i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}
                         </button>
                         <button class="icon-btn love-btn ${post.loved ? 'text-custom-hover' : 'text-white'} px-2 py-1 rounded-lg focus:outline-none transition duration-300">
@@ -226,6 +278,21 @@
                         </button>
                     </div>
                     <span class="text-sm text-gray-400">Posted by User123</span>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold mb-2 text-[#ff5733]">Comments</h4>
+                    <div class="space-y-2 mb-4" id="comments-${post.id}">
+                        ${post.comments.map(comment => `
+                            <div class="bg-gray-600 rounded-lg p-2">
+                                <span class="font-semibold text-white">${comment.user}:</span>
+                                <span class="text-gray-300">${comment.content}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="flex">
+                        <input type="text" class="comment-input flex-grow bg-gray-800 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Add a comment...">
+                        <button class="add-comment-btn bg-[#ff5733] text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Post</button>
+                    </div>
                 </div>
             `;
 
@@ -239,7 +306,7 @@
             verifyBtn.addEventListener('click', () => {
                 post.verified = !post.verified;
                 verifyBtn.classList.toggle('bg-green-500');
-                verifyBtn.classList.toggle('bg-han-purple');
+                verifyBtn.classList.toggle('bg-custom-hover');
                 verifyBtn.innerHTML = `<i class="fas fa-check-circle mr-1"></i>${post.verified ? 'Verified' : 'Verify'}`;
             });
 
@@ -254,17 +321,57 @@
                 alert('Sharing functionality would be implemented here.');
             });
 
+            const commentInput = postElement.querySelector('.comment-input');
+            const addCommentBtn = postElement.querySelector('.add-comment-btn');
+            addCommentBtn.addEventListener('click', () => {
+                const commentContent = commentInput.value.trim();
+                if (commentContent) {
+                    const newComment = { user: "CurrentUser", content: commentContent };
+                    post.comments.push(newComment);
+                    const commentsContainer = postElement.querySelector(`#comments-${post.id}`);
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'bg-gray-600 rounded-lg p-2';
+                    commentElement.innerHTML = `
+                        <span class="font-semibold text-white">${newComment.user}:</span>
+                        <span class="text-gray-300">${newComment.content}</span>
+                    `;
+                    commentsContainer.appendChild(commentElement);
+                    commentInput.value = '';
+                }
+            });
+
             return postElement;
         }
 
         function renderPosts() {
             postsContainer.innerHTML = '';
             posts.forEach(post => {
-                postsContainer.insertAdjacentElement('afterbegin', createPostElement(post));
+                postsContainer.appendChild(createPostElement(post));
             });
         }
 
         renderPosts();
+
+        // Trending topics functionality
+        const trendingTopicsList = [
+            "#CommunityCleanup",
+            "#LocalBusinessSpotlight",
+            "#TrafficUpdate",
+            "#NeighborhoodWatch",
+            "#CommunityEvents"
+        ];
+
+        function renderTrendingTopics() {
+            trendingTopics.innerHTML = '';
+            trendingTopicsList.forEach(topic => {
+                const topicElement = document.createElement('li');
+                topicElement.className = 'text-[#ff5733] hover:text-custom-hover transition-colors';
+                topicElement.textContent = topic;
+                trendingTopics.appendChild(topicElement);
+            });
+        }
+
+        renderTrendingTopics();
 
         addMediaButton.addEventListener('click', () => {
             postMedia.click();
@@ -274,7 +381,7 @@
             if (e.target.files.length > 0) {
                 addMediaButton.textContent = 'Media Added';
                 addMediaButton.classList.add('bg-green-500');
-                addMediaButton.classList.remove('bg-han-purple');
+                addMediaButton.classList.remove('bg-custom-hover');
             }
         });
 
@@ -291,7 +398,8 @@
                     upvotes: 0,
                     verified: false,
                     loved: false,
-                    media: null
+                    media: null,
+                    comments: []
                 };
 
                 if (mediaFile) {
@@ -315,7 +423,7 @@
                 postMedia.value = '';
                 addMediaButton.textContent = 'Add Media';
                 addMediaButton.classList.remove('bg-green-500');
-                addMediaButton.classList.add('bg-han-purple');
+                addMediaButton.classList.add('bg-custom-hover');
             }
         });
 

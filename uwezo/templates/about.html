@@ -23,6 +23,17 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .custom-color {
+            color: #ff5733;
+        }
+    </style>
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
@@ -80,20 +91,20 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
-        <h1 class="text-4xl font-bold text-white mb-8">About Jukumu</h1>
+    <main class="max-w-8xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12 centered-content">
+        <h1 class="text-4xl font-bold custom-color mb-8">About Jukumu</h1>
         
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Mission</h2>
+        <section class="mb-12 centered-content">
+            <h2 class="text-2xl font-semibold custom-color mb-4">Our Mission</h2>
             <p class="text-gray-300 mb-4">Jukumu is dedicated to empowering communities to stand against violence and promote accountability. We believe that by working together, we can create safer, more transparent, and more just societies.</p>
             <p class="text-gray-300 mb-4">Our platform provides tools for reporting incidents, tracking progress, and fostering community engagement to address issues of violence and accountability in Kenya and beyond.</p>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-han-purple mb-4">What We Do</h2>
+        <section class="mb-12 centered-content">
+            <h2 class="text-2xl font-semibold custom-color mb-4">What We Do</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Incident Reporting</h3>
+                    <h3 class="text-xl font-semibold mb-2 custom-color">Incident Reporting</h3>
                     <p class="text-gray-400">Our platform allows users to easily report incidents of violence or corruption, ensuring that no voice goes unheard.</p>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
@@ -119,12 +130,12 @@
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Impact</h2>
+        <section class="mb-12 centered-content">
+            <h2 class="text-2xl font-semibold custom-color mb-4">Our Impact</h2>
             <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                     <div>
-                        <p class="text-4xl font-bold text-custom-hover mb-2">10,000+</p>
+                        <p class="text-4xl font-bold custom-color mb-2">10,000+</p>
                         <p class="text-gray-400">Incidents Reported</p>
                     </div>
                     <div>
@@ -139,12 +150,12 @@
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-han-purple mb-4">Our Team</h2>
+        <section class="mb-12 centered-content">
+            <h2 class="text-2xl font-semibold custom-color mb-4">Our Team</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
                     <img src="/placeholder.svg?height=150&width=150" alt="John Doe" class="w-32 h-32 rounded-full mx-auto mb-4">
-                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">John Doe</h3>
+                    <h3 class="text-xl font-semibold mb-2 custom-color">John Doe</h3>
                     <p class="text-gray-400">Founder & CEO</p>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
@@ -160,8 +171,8 @@
             </div>
         </section>
 
-        <section>
-            <h2 class="text-2xl font-semibold text-han-purple mb-4">Join Us</h2>
+        <section class="centered-content">
+            <h2 class="text-2xl font-semibold custom-color mb-4">Join Us</h2>
             <p class="text-gray-300 mb-4">We believe that everyone has a role to play in creating safer and more accountable communities. Join us in our mission to make a difference.</p>
             <a href="#" class="inline-block bg-han-purple text-white px-6 py-3 rounded-lg hover:bg-custom-hover transition duration-300">Get Involved</a>
         </section>
