@@ -119,19 +119,19 @@
             <h2 class="text-2xl font-semibold mb-6 text-han-purple">Success Stories</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img src="/placeholder.svg?height=200&width=400" alt="Community Garden" class="w-full h-48 object-cover">
+                    <img src="https://plus.unsplash.com/premium_photo-1663126609862-d924ebb62af7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29tbXVuaXR5JTIwZ2FyZGVufGVufDB8fDB8fHww" alt="Community Garden" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2 text-white">Community Garden Initiative</h3>
                         <p class="text-gray-400 mb-4">Local residents transformed an abandoned lot into a thriving community garden, providing fresh produce and a gathering space for neighbors.</p>
-                        <a href="#" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
+                        <a href="https://mathare.org/mathare-shamba/" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
                     </div>
                 </div>
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img src="/placeholder.svg?height=200&width=400" alt="Youth Mentorship Program" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1639432039026-d13fa89599bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8eW91dGglMjBtZW50b3JzaGlwfGVufDB8fDB8fHww" alt="Youth Mentorship Program" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2 text-white">Youth Mentorship Program</h3>
                         <p class="text-gray-400 mb-4">Our mentorship program has helped 100 at-risk youth improve their academic performance and pursue higher education opportunities.</p>
-                        <a href="#" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
+                        <a href="https://www.youthpromisekenya.org/mentorship-program" class="text-han-purple hover:text-custom-hover transition-colors">Read More</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
         <section class="text-center">
             <h2 class="text-2xl font-semibold mb-6 text-han-purple">Be Part of the Change</h2>
             <p class="text-lg mb-6">Your involvement can make a difference. Join us in creating a more accountable and thriving community.</p>
-            <a href="#" class="inline-block bg-han-purple text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-custom-hover transition duration-300">Get Involved Today</a>
+            <a href="{% url 'contribution' %}" class="inline-block bg-han-purple text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-custom-hover transition duration-300">Get Involved Today</a>
         </section>
     </main>
 
@@ -195,11 +195,11 @@
                 <div>
                     <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Home</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Report Incident</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Hotspot Map</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Resource Center</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">About Us</a></li>
+                        <li><a href="{% url 'index' %}" class="hover:text-custom-hover transition-colors">Home</a></li>
+                        <li><a href="{ url 'report_incident' %}" class="hover:text-custom-hover transition-colors">Report Incident</a></li>
+                        <li><a href="{% url 'hotspot' %}" class="hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+                        <li><a href="{% url 'resource' %}" class="hover:text-custom-hover transition-colors">Resource Center</a></li>
+                        <li><a href="{#% url 'about' %}" class="hover:text-custom-hover transition-colors">About Us</a></li>
                     </ul>
                 </div>
                 <div>

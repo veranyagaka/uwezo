@@ -155,17 +155,17 @@
             <h2 class="text-2xl font-semibold custom-color mb-4">Our Team</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
-                    <img src="../assets/images/person1.jpeg" alt="John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
+                    <img src="{{ url_for('static', filename='assets/images/person1.jpeg') }}" alt="John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
                     <h3 class="text-xl font-semibold mb-2 custom-color">John Doe</h3>
                     <p class="text-gray-400">Founder & CEO</p>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
-                    <img src="../assets/images/person2.jpeg" alt="Jane Smith" class="w-40 h-40 rounded-full mx-auto mb-4 object-cove">
+                    <img src="{{ url_for('static', filename='assets/images/person2.jpeg') }}" alt="Jane Smith" class="w-40 h-40 rounded-full mx-auto mb-4 object-cove">
                     <h3 class="text-xl font-semibold mb-2 text-custom-hover">Jane Smith</h3>
                     <p class="text-gray-400">Chief Technology Officer</p>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center">
-                    <img src="../assets/images/person3.jpeg" alt="David Johnson" class="w-40 h-40 rounded-full mx-auto mb-4 object-cove">
+                    <img src="{{ url_for('static', filename='assets/images/person3.jpeg') }}" alt="David Johnson" class="w-40 h-40 rounded-full mx-auto mb-4 object-cove">
                     <h3 class="text-xl font-semibold mb-2 text-custom-hover">David Johnson</h3>
                     <p class="text-gray-400">Community Outreach Director</p>
                 </div>
@@ -175,7 +175,7 @@
         <section class="centered-content">
             <h2 class="text-2xl font-semibold custom-color mb-4">Join Us</h2>
             <p class="text-gray-300 mb-4">We believe that everyone has a role to play in creating safer and more accountable communities. Join us in our mission to make a difference.</p>
-            <a href="contribution.html" class="inline-block bg-han-purple text-white px-6 py-3 rounded-lg hover:bg-custom-hover transition duration-300">Get Involved</a>
+            <a href="{% url 'contribution' %}" class="inline-block bg-han-purple text-white px-6 py-3 rounded-lg hover:bg-custom-hover transition duration-300">Get Involved</a>
         </section>
     </main>
 
@@ -185,7 +185,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="mb-8 md:mb-0">
                     <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
-                        <img src="../assets/images/logo-small.png" width="20" height="20" alt="Jukumu Logo" class="mr-2">
+                        <img src="{% static 'images/logo-small.png' %}" width="20" height="20" alt="Jukumu Logo" class="mr-2">
                         Jukumu
                     </a>
                     <p class="mb-4">Empowering communities to stand against violence and promote accountability.</p>
@@ -204,11 +204,11 @@
                 <div>
                     <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Home</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Report Incident</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Hotspot Map</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">Resource Center</a></li>
-                        <li><a href="#" class="hover:text-custom-hover transition-colors">About Us</a></li>
+                        <li><a href="{% url 'index' %}" class="hover:text-custom-hover transition-colors">Home</a></li>
+                        <li><a href="{ url 'report_incident' %}" class="hover:text-custom-hover transition-colors">Report Incident</a></li>
+                        <li><a href="{% url 'hotspot' %}" class="hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+                        <li><a href="{% url 'resource' %}" class="hover:text-custom-hover transition-colors">Resource Center</a></li>
+                        <li><a href="{#% url 'about' %}" class="hover:text-custom-hover transition-colors">About Us</a></li>
                     </ul>
                 </div>
                 <div>
