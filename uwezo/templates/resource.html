@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jukumu - Resource Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{% static '/uwezo/assets/images/favicon.ico' %}" type="image/x-icon">
     <script>
         tailwind.config = {
             theme: {
@@ -115,7 +117,7 @@
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-white mb-4">Safety Tips for Dangerous Situations</h2>
                 <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img src="https://i.pinimg.com/736x/32/3b/c4/323bc40d3b4cf8a2ed7c06c0fac69650.jpg" alt="Safety Tips" class="w-full h-48">
+                    <img src="../assets/images/safety.jpeg" alt="Safety Tips" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <ul class="list-disc list-inside space-y-2">
                             <li>Stay calm and assess the situation quickly</li>
@@ -138,7 +140,7 @@
                 <h2 class="text-2xl font-semibold text-white mb-4">Self-Defense Classes</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://i.pinimg.com/236x/99/34/17/993417d06366c94e99288b684329f333.jpg" alt="Nairobi Self-Defense Academy" class="w-full h-48 object-cover">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Nairobi Self-Defense Academy" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Nairobi Self-Defense Academy</h3>
                             <p class="mb-2">Learn practical self-defense techniques from experienced instructors.</p>
@@ -148,7 +150,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://i.pinimg.com/564x/e8/6c/aa/e86caae972984e20518e4c6fe44fb9ab.jpg" alt="Mombasa Martial Arts Center" class="w-full h-48 object-cover">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Mombasa Martial Arts Center" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Mombasa Martial Arts Center</h3>
                             <p class="mb-2">Comprehensive self-defense training for all skill levels.</p>
@@ -165,7 +167,7 @@
                 <h2 class="text-2xl font-semibold text-white mb-4">Educational Resources</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1606323544089-4ee380240779?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2VuZGVyJTIwYmFzZWQlMjB2aW9sZW5jZXxlbnwwfHwwfHx8MA%3D%3D" alt="Understanding Gender-Based Violence" class="w-full h-32 object-cover">
+                        <img src="/placeholder.svg?height=150&width=300" alt="Understanding Gender-Based Violence" class="w-full h-32 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Understanding Gender-Based Violence</h3>
                             <p class="mb-4">Learn about the different forms of gender-based violence and how to recognize them.</p>
@@ -173,7 +175,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://plus.unsplash.com/premium_photo-1663054954443-b0d64eb36d29?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvdGVzdHxlbnwwfHwwfHx8MA%3D%3D" alt="Legal Rights and Protections" class="w-full h-32 object-cover">
+                        <img src="/placeholder.svg?height=150&width=300" alt="Legal Rights and Protections" class="w-full h-32 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Legal Rights and Protections</h3>
                             <p class="mb-4">Understand your legal rights and the protections available to victims of violence in Kenya.</p>
@@ -181,7 +183,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1590719550920-7543bd5657a3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJ5c3RhbmRlciUyMGludGVydmVudGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="Bystander Intervention" class="w-full h-32 object-cover">
+                        <img src="/placeholder.svg?height=150&width=300" alt="Bystander Intervention" class="w-full h-32 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Bystander Intervention</h3>
                             <p class="mb-4">Learn how to safely intervene when witnessing potentially dangerous situations.</p>
@@ -196,7 +198,7 @@
                 <h2 class="text-2xl font-semibold text-white mb-4">Support Organizations</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1607829856286-8eb35ecc1e47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjB3b21lbnMlMjByaWdodHN8ZW58MHx8MHx8fDA%3D" alt="FIDA Kenya" class="w-full h-48 object-cover">
+                        <img src="/placeholder.svg?height=200&width=400" alt="FIDA Kenya" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">FIDA Kenya</h3>
                             <p class="mb-2">Provides free legal aid to women and promotes women's rights.</p>
@@ -205,7 +207,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://media.istockphoto.com/id/1282328133/photo/group-of-people-activists-protesting-on-streets-women-march-and-demonstration-concept.jpg?s=2048x2048&w=is&k=20&c=as0FUTsqg7a-pTme4xQBPcY5gGEGLte9mjnWPm-cf_Q=" alt="Coalition on Violence Against Women (COVAW)" class="w-full h-48 object-cover">
+                        <img src="/placeholder.svg?height=200&width=400" alt="Coalition on Violence Against Women (COVAW)" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-custom-hover">Coalition on Violence Against Women (COVAW)</h3>
                             <p class="mb-2">Works to eradicate all forms of violence against women in Kenya.</p>
@@ -224,7 +226,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="mb-8 md:mb-0">
                     <a href="#"  class="flex items-center text-white font-bold text-2xl mb-4">
-                        <img src="{% static 'images/logo.png' %}" width="20" height="20" alt="Jukumu Logo" class="mr-2">
+                        <img src="../assets/images/logo-small.png" width="20" height="20" alt="Jukumu Logo" class="mr-2">
                         Jukumu
                     </a>
                     <p class="mb-4">Empowering communities to stand against violence and promote accountability.</p>
