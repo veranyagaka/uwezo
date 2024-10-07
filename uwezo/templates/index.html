@@ -41,11 +41,11 @@
 
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="{% url 'index' %}" class="text-white hover:text-jukumu-orange transition-colors">Home</a>
-                <a href="#" class="text-white hover:text-jukumu-orange transition-colors">Report Incident</a>
-                <a href="#" class="text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a>
-                <a href="{% url 'trending' %}" class="text-white hover:text-jukumu-orange transition-colors">What's Trending</a>
+                <a href="{% url 'report_incident' %}" class="text-white hover:text-jukumu-orange transition-colors">Report Incident</a>
+                <a href="{% url 'hotspot' %}" class="text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a>
+                <a href="{% url 'trending' %}" class="text-white hover:text-jukumu-orange transition-colors">Trending</a>
                 <a href="{% url 'recent' %}" class="text-white hover:text-jukumu-orange transition-colors">Recent Posts</a>
-                <a href="#" class="text-white hover:text-jukumu-orange transition-colors">About</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-jukumu-orange transition-colors">About</a>
             </nav>
 
             <div class="flex items-center space-x-4">
@@ -77,11 +77,11 @@
         </div>
         <ul class="p-5 space-y-4">
             <li><a href="{% url 'index' %}" class="block text-white hover:text-jukumu-orange transition-colors">Home</a></li>
-            <li><a href="#" class="block text-white hover:text-jukumu-orange transition-colors">Report Incident</a></li>
-            <li><a href="#" class="block text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a></li>
+            <li><a href="{% url 'report_incident' %}" class="block text-white hover:text-jukumu-orange transition-colors">Report Incident</a></li>
+            <li><a href="{% url 'hotspot' %}" class="block text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a></li>
             <li><a href="{% url 'trending' %}" class="block text-white hover:text-jukumu-orange transition-colors">What's Trending</a></li>
             <li><a href="{% url 'recent' %}" class="block text-white hover:text-jukumu-orange transition-colors">Recent Posts</a></li>
-            <li><a href="#" class="block text-white hover:text-jukumu-orange transition-colors">About</a></li>
+            <li><a href="{% url 'about' %}" class="block text-white hover:text-jukumu-orange transition-colors">About</a></li>
             <li><button id="mobile-login-btn" class="block text-white hover:text-jukumu-orange transition-colors">Login</button></li>
             <li><button id="mobile-signup-btn" class="block text-white hover:text-jukumu-orange transition-colors">Sign up</button></li>
         </ul>

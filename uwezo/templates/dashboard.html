@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jukumu - Dashboard</title>
+    <title>Your Dashboard - Jukumu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,69 +19,38 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full bg-xiketic py-5 transition-all duration-300 z-50" id="header">
         <div class="container mx-auto px-4 flex items-center justify-between">
-            <a href="#" class="flex items-center text-white font-bold text-2xl">
-                <img src="../assets/images/logo.png" width="68" height="48" alt="Jukumu Logo" class="mr-2">
+            <a href="{% url 'index' %}" class="flex items-center text-jukumu-orange font-bold text-2xl">
+                <img src="{% static 'images/logo.png' %}" width="68" height="48" alt="Jukumu Logo" class="mr-2">
                 Jukumu
             </a>
 
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
+                <a href="{% url 'report_incident' %}" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
                 <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
-            </nav>
-
-            <div class="flex items-center space-x-4">
-=======
-<h1>Welcome, {{ user.username }}!</h1> 
-<title>Your Dashboard</title>
-<h2>Dashboard</h2>
-<header>
-    <div class="container">
-        <h3>Community Accountability Platform</h3>
-        <nav>
-            <ul>
-                <li><a href="{% url 'report_incident' %}">Report Incident</a></li>
-                <li><a href="#">Hotspot Map</a></li>
-                <li><a href="{% url 'track_progress' %}">Track Progress</a></li>
-                <li><a href="{% url 'trending' %}">What's Trending</a></li>
-                <li><a href="{% url 'recent' %}">Recent Posts</a></li>
->>>>>>> 98a5eb70b98695e4fcf3e9cbb89605fe3c72cedd
+                <a href="{% url 'track_progress' %}" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
+                <a href="{% url 'trending' %}" class="text-white hover:text-custom-hover transition-colors">What's Trending</a>
+                <a href="{% url 'recent' %}" class="text-white hover:text-custom-hover transition-colors">Recent Posts</a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}" class="text-white hover:text-custom-hover transition-colors">Logout</a>
                 {% else %}
                     <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="text-white hover:text-custom-hover transition-colors">Login</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" class="text-white hover:text-custom-hover transition-colors">Sign up</a>
                 {% endif %}
-<<<<<<< HEAD
-                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
-                    <span class="mr-2">Contribute</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <button class="md:hidden text-white text-2xl" id="menu-open-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+            </nav>
+
+            <button class="md:hidden text-white text-2xl" id="menu-open-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
     </header>
-=======
-            </ul>
-        </nav>
-    </div>
-</header>
->>>>>>> 98a5eb70b98695e4fcf3e9cbb89605fe3c72cedd
 
     <!-- Mobile Menu -->
     <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobile-menu-overlay"></div>
@@ -96,18 +64,23 @@
             </button>
         </div>
         <ul class="p-5 space-y-4">
-            <li><a href="#home" class="block text-white hover:text-han-purple transition-colors">Home</a></li>
-            <li><a href="#explore" class="block text-white hover:text-han-purple transition-colors">Report Incident</a></li>
-            <li><a href="#top-seller" class="block text-white hover:text-han-purple transition-colors">Hotspot Map</a></li>
-            <li><a href="#collection" class="block text-white hover:text-han-purple transition-colors">Track Progress</a></li>
-            <li><a href="#instruction" class="block text-white hover:text-han-purple transition-colors">Community Forum</a></li>
-            <li><a href="#" class="block text-white hover:text-han-purple transition-colors">Contact</a></li>
+            <li><a href="{% url 'report_incident' %}" class="block text-white hover:text-custom-hover transition-colors">Report Incident</a></li>
+            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+            <li><a href="{% url 'track_progress' %}" class="block text-white hover:text-custom-hover transition-colors">Track Progress</a></li>
+            <li><a href="{% url 'trending' %}" class="block text-white hover:text-custom-hover transition-colors">What's Trending</a></li>
+            <li><a href="{% url 'recent' %}" class="block text-white hover:text-custom-hover transition-colors">Recent Posts</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" class="block text-white hover:text-custom-hover transition-colors">Logout</a></li>
+            {% else %}
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="block text-white hover:text-custom-hover transition-colors">Login</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" class="block text-white hover:text-custom-hover transition-colors">Sign up</a></li>
+            {% endif %}
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 pt-24 pb-12">
-        <h1 class="text-4xl font-bold text-white mb-8">Welcome, {{ user.username }}!</h1>
+        <h1 class="text-4xl font-bold text-custom-hover mb-8">Welcome, {{ user.username }}!</h1>
         <h2 class="text-2xl font-semibold text-han-purple mb-6">Dashboard</h2>
 
         <!-- Post creation form -->
@@ -116,33 +89,6 @@
             {{ form.as_p }}
             <button type="submit" class="bg-han-purple text-white font-bold py-2 px-4 rounded hover:bg-custom-hover transition-colors">Create Post</button>
         </form>
-
-<<<<<<< HEAD
-        <hr class="border-gray-700 mb-8">
-=======
-<!-- Display existing posts -->
-<h3>Posts</h3>
-<ul>
-    {% for post in posts %}
-        <li>
-            <strong>{{ post.user.username }}</strong>: {{ post.content }} 
-            <em>at {{ post.created_at }}</em>
-            {% if post.is_edited %}
-                <em>(edited)</em>
-            {% endif %}
-
-            <!-- Edit button -->
-            <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit</a>
-
-            <!-- Delete button -->
-            <form method="POST" action="{% url 'delete_post' post.id %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
-            </form>
-
-            <!-- Share button -->
-            <a href="{% url 'share_post' post.id %}" class="btn btn-secondary">Share</a>
->>>>>>> 98a5eb70b98695e4fcf3e9cbb89605fe3c72cedd
 
         <!-- Display existing posts -->
         <h3 class="text-xl font-semibold text-han-purple mb-4">Posts</h3>
@@ -153,6 +99,17 @@
                         <div>
                             <strong class="text-white">{{ post.user.username }}</strong>
                             <p class="text-gray-400 text-sm">{{ post.created_at }}</p>
+                            {% if post.is_edited %}
+                                <span class="text-gray-400 text-sm">(edited)</span>
+                            {% endif %}
+                        </div>
+                        <div class="space-x-2">
+                            <a href="{% url 'edit_post' post.id %}" class="text-han-purple hover:text-custom-hover transition-colors">Edit</a>
+                            <form method="POST" action="{% url 'delete_post' post.id %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-custom-hover hover:text-han-purple transition-colors" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
+                            </form>
+                            <a href="{% url 'share_post' post.id %}" class="text-han-purple hover:text-custom-hover transition-colors">Share</a>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-4">{{ post.content }}</p>
@@ -204,13 +161,13 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="mb-8 md:mb-0">
                     <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
-                        <img src="../assets/images/logo-small.png" width="20" height="20" alt="Jukumu Logo" class="mr-2">
+                        <img src="../assets/images/logo-small.png" width="48" height="48" alt="Jukumu Logo" class="mr-2">
                         Jukumu
                     </a>
                     <p class="mb-4">Empowering communities to stand against violence and promote accountability.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-white hover:text-custom-hover transition-colors">
-                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" class="text-white hover:text-custom-hover transition-colors">
                             <i class="fab fa-twitter"></i>
@@ -264,7 +221,6 @@
     </a>
 
     <script>
-        // JavaScript code (unchanged)
         document.addEventListener('DOMContentLoaded', function() {
             // Post form submission
             const postForm = document.getElementById('postForm');
@@ -310,8 +266,7 @@
 
                     if (commentInput.value.trim() !== '') {
                         const newComment = document.createElement('li');
-                        new
-Comment.className = 'bg-gray-700 rounded p-2';
+                        newComment.className = 'bg-gray-700 rounded p-2';
                         newComment.innerHTML = `
                             <strong class="text-white">{{ user.username }}</strong>
                             <p class="text-gray-300">${commentInput.value}</p>

@@ -24,28 +24,38 @@
         .custom-shadow {
             box-shadow: 0 4px 6px -1px rgba(255, 87, 51, 0.1), 0 2px 4px -1px rgba(255, 87, 51, 0.06);
         }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #ff5733;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full bg-xiketic py-5 transition-all duration-300 z-50" id="header">
         <div class="container mx-auto px-4 flex items-center justify-between">
-            <a href="#" class="flex items-center text-white font-bold text-2xl">
-                <img src="../assets/images/logo.png" width="68" height="48" alt="Jukumu Logo" class="mr-2">
+            <a href="{% url 'index' %}" class="flex items-center text-jukumu-orange font-bold text-2xl">
+                <img src="{% static 'images/logo.png' %}" width="68" height="48" alt="Jukumu Logo" class="mr-2">
                 Jukumu
             </a>
 
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+                <a href="{% url 'index' %}" class="text-white hover:text-jukumu-orange transition-colors">Home</a>
+                <a href="{% url 'report_incident' %}" class="text-white hover:text-jukumu-orange transition-colors">Report Incident</a>
+                <a href="{% url 'hotspot' %}" class="text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a>
+                <a href="{% url 'trending' %}" class="text-white hover:text-jukumu-orange transition-colors">What's Trending</a>
+                <a href="{% url 'recent' %}" class="text-white hover:text-jukumu-orange transition-colors">Recent Posts</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-jukumu-orange transition-colors">About</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-custom-hover text-custom-hover rounded-full hover:bg-custom-hover hover:text-white transition-all duration-300">
+                <a href="{% url 'contribution' %}" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-custom-hover text-custom-hover rounded-full hover:bg-custom-hover hover:text-white transition-all duration-300">
                     <span class="mr-2">Contribute</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -57,6 +67,7 @@
                     </svg>
                 </button>
             </div>
+
         </div>
     </header>
 
@@ -72,12 +83,12 @@
             </button>
         </div>
         <ul class="p-5 space-y-4">
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Home</a></li>
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Report Incident</a></li>
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Hotspot Map</a></li>
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Track Progress</a></li>
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Community Forum</a></li>
-            <li><a href="#" class="block text-white hover:text-custom-hover transition-colors">Contact</a></li>
+            <li><a href="{% url 'index' %}" class="block text-white hover:text-custom-hover transition-colors">Home</a></li>
+            <li><a href="{% url 'report_incident' %}" class="block text-white hover:text-custom-hover transition-colors">Report Incident</a></li>
+            <li><a href="{% url 'hotspot' %}"block text-white hover:text-custom-hover transition-colors">Hotspot Map</a></li>
+            <li><a href="{% url 'track_progress' %}" class="block text-white hover:text-custom-hover transition-colors">Track Progress</a></li>
+            <li><a href="{% url 'community' %}" class="block text-white hover:text-custom-hover transition-colors">Community Forum</a></li>
+            <li><a href="{% url 'about' %}" class="block text-white hover:text-custom-hover transition-colors">Contact</a></li>
         </ul>
     </nav>
 
@@ -85,8 +96,8 @@
     <main class="container mx-auto px-4 pt-24 pb-12">
         <h1 class="text-4xl font-bold text-custom-hover mb-8">Community Forum</h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="md:col-span-2">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
                 <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg custom-shadow">
                     <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Create a New Post</h2>
                     <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Post Title">
@@ -95,64 +106,31 @@
                     <button id="add-media" class="bg-custom-hover text-white rounded-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none mr-2 transition duration-300">Add Media</button>
                     <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none transition duration-300">Submit Post</button>
                 </div>
-
-                <!-- Trending Topics -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Trending Topics</h2>
-                    <ul class="space-y-2" id="trending-topics">
-                        <!-- Trending topics will be dynamically added here -->
-                    </ul>
-                </div>
-
-                <!-- Live Chat -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Live Chat</h2>
-                    <div class="bg-gray-700 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-messages">
-                        <!-- Chat messages will be dynamically added here -->
-                    </div>
-                    <div class="flex">
-                        <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Type your message...">
-                        <button id="send-chat" class="bg-[#ff5733] text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Center Column -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Create New Post -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-[#ff5733]">Create a New Post</h2>
-                    <input type="text" id="post-title" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Post Title">
-                    <textarea id="post-content" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" rows="3" placeholder="Post Content"></textarea>
-                    <input type="file" id="post-media" class="hidden" accept="image/*,video/*">
-                    <div class="flex justify-between">
-                        <button id="add-media" class="bg-[#ff5733] text-white rounded-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Add Media</button>
-                        <button id="submit-post" class="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none transition duration-300">Submit Post</button>
-                    </div>
-                </div>
-
-                <!-- Posts Container -->
                 <div id="posts-container" class="space-y-8">
                     <!-- Posts will be dynamically added here -->
                 </div>
             </div>
             
-            <aside class="bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow">
-                <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Community Info</h2>
-                <p class="mb-4">Welcome to our community! Share your thoughts, ideas, and experiences with others.</p>
-                <h3 class="text-xl font-semibold mb-2 text-custom-hover">Rules</h3>
-                <ul class="list-disc pl-5 mb-6 text-gray-400">
-                    <li>Be respectful to others</li>
-                    <li>No spam or self-promotion</li>
-                    <li>Use appropriate tags for your posts</li>
-                </ul>
-                <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Live Chat</h2>
-                <div class="bg-gray-700 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-messages">
-                    <!-- Chat messages will be dynamically added here -->
+            <aside class="space-y-8">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow">
+                    <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Community Info</h2>
+                    <p class="mb-4">Welcome to our community! Share your thoughts, ideas, and experiences with others.</p>
+                    <h3 class="text-xl font-semibold mb-2 text-custom-hover">Rules</h3>
+                    <ul class="list-disc pl-5 mb-6 text-gray-400">
+                        <li>Be respectful to others</li>
+                        <li>No spam or self-promotion</li>
+                        <li>Use appropriate tags for your posts</li>
+                    </ul>
                 </div>
-                <div class="flex">
-                    <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Type your message...">
-                    <button id="send-chat" class="bg-custom-hover text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg custom-shadow">
+                    <h2 class="text-2xl font-semibold mb-4 text-custom-hover">Live Chat</h2>
+                    <div class="bg-gray-700 rounded-lg p-4 mb-4 h-64 overflow-y-auto custom-scrollbar" id="chat-messages">
+                        <!-- Chat messages will be dynamically added here -->
+                    </div>
+                    <div class="flex">
+                        <input type="text" id="chat-input" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Type your message...">
+                        <button id="send-chat" class="bg-custom-hover text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Send</button>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -164,7 +142,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="mb-8 md:mb-0">
                     <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
-                        <img src="../assets/images/logo-small.png" width="20" height="20" alt="Jukumu Logo" class="mr-2">
+                        <img src="./assets/images/logo.svg" width="68" height="48" alt="Jukumu Logo" class="mr-2">
                         Jukumu
                     </a>
                     <p class="mb-4">Empowering communities to stand against violence and promote accountability.</p>
@@ -233,21 +211,11 @@
         const postMedia = document.getElementById('post-media');
         const addMediaButton = document.getElementById('add-media');
         const submitPostButton = document.getElementById('submit-post');
-        const trendingTopics = document.getElementById('trending-topics');
 
         let posts = [
-            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false, loved: false, media: { type: 'image', url: 'https://picsum.photos/seed/traffic/200/150' }, comments: [
-                { user: "User1", content: "Thanks for the heads up!" },
-                { user: "User2", content: "Any alternative routes suggested?" }
-            ] },
-            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true, loved: true, media: { type: 'image', url: 'https://picsum.photos/seed/covid/200/150' }, comments: [
-                { user: "User3", content: "Great news! Is it free?" },
-                { user: "User4", content: "What are the operating hours?" }
-            ] },
-            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false, loved: false, media: { type: 'video', url: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4' }, comments: [
-                { user: "User5", content: "Any idea when it will be fixed?" },
-                { user: "User6", content: "I've reported it to the power company." }
-            ] },
+            { id: 1, title: "Traffic incident on Mombasa Road", content: "Heavy traffic due to an accident near...", upvotes: 15, verified: false, loved: false, media: { type: 'image', url: 'https://picsum.photos/seed/traffic/400/300' }, comments: [] },
+            { id: 2, title: "New COVID-19 testing center in Westlands", content: "A new testing facility has opened at...", upvotes: 32, verified: true, loved: true, media: { type: 'image', url: 'https://picsum.photos/seed/covid/400/300' }, comments: [] },
+            { id: 3, title: "Power outage in Kilimani area", content: "Several blocks in Kilimani are experiencing...", upvotes: 8, verified: false, loved: false, media: { type: 'video', url: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4' }, comments: [] },
         ];
 
         function createPostElement(post) {
@@ -258,8 +226,8 @@
                 <p class="mb-4 text-gray-400">${post.content}</p>
                 ${post.media ? `<div class="mb-4">
                     ${post.media.type === 'image' 
-                        ? `<img src="${post.media.url}" alt="Post image" class="w-48 h-36 object-cover rounded-lg">`
-                        : `<video src="${post.media.url}" controls class="w-48 h-36 object-cover rounded-lg"></video>`
+                        ? `<img src="${post.media.url}" alt="Post image" class="max-w-full h-auto rounded-lg">`
+                        : `<video src="${post.media.url}" controls class="max-w-full h-auto rounded-lg"></video>`
                     }
                 </div>` : ''}
                 <div class="flex items-center justify-between flex-wrap mb-4">
@@ -279,19 +247,12 @@
                     </div>
                     <span class="text-sm text-gray-400">Posted by User123</span>
                 </div>
-                <div class="bg-gray-700 rounded-lg p-4">
-                    <h4 class="text-lg font-semibold mb-2 text-[#ff5733]">Comments</h4>
-                    <div class="space-y-2 mb-4" id="comments-${post.id}">
-                        ${post.comments.map(comment => `
-                            <div class="bg-gray-600 rounded-lg p-2">
-                                <span class="font-semibold text-white">${comment.user}:</span>
-                                <span class="text-gray-300">${comment.content}</span>
-                            </div>
-                        `).join('')}
-                    </div>
+                <div class="comments-section">
+                    <h4 class="text-lg font-semibold mb-2 text-custom-hover">Comments</h4>
+                    <div class="comments-container space-y-2 mb-4"></div>
                     <div class="flex">
-                        <input type="text" class="comment-input flex-grow bg-gray-800 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ff5733]" placeholder="Add a comment...">
-                        <button class="add-comment-btn bg-[#ff5733] text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Post</button>
+                        <input type="text" class="comment-input flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-custom-hover" placeholder="Add a comment...">
+                        <button class="add-comment-btn bg-custom-hover text-white rounded-r-lg px-4 py-2 hover:bg-opacity-80 focus:outline-none transition duration-300">Post</button>
                     </div>
                 </div>
             `;
@@ -321,24 +282,30 @@
                 alert('Sharing functionality would be implemented here.');
             });
 
+            const commentsContainer = postElement.querySelector('.comments-container');
             const commentInput = postElement.querySelector('.comment-input');
             const addCommentBtn = postElement.querySelector('.add-comment-btn');
-            addCommentBtn.addEventListener('click', () => {
-                const commentContent = commentInput.value.trim();
-                if (commentContent) {
-                    const newComment = { user: "CurrentUser", content: commentContent };
-                    post.comments.push(newComment);
-                    const commentsContainer = postElement.querySelector(`#comments-${post.id}`);
+
+            function renderComments() {
+                commentsContainer.innerHTML = '';
+                post.comments.forEach(comment => {
                     const commentElement = document.createElement('div');
-                    commentElement.className = 'bg-gray-600 rounded-lg p-2';
-                    commentElement.innerHTML = `
-                        <span class="font-semibold text-white">${newComment.user}:</span>
-                        <span class="text-gray-300">${newComment.content}</span>
-                    `;
+                    commentElement.className = 'bg-gray-700 rounded-lg p-2';
+                    commentElement.textContent = comment;
                     commentsContainer.appendChild(commentElement);
+                });
+            }
+
+            addCommentBtn.addEventListener('click', () => {
+                const comment = commentInput.value.trim();
+                if (comment) {
+                    post.comments.push(comment);
                     commentInput.value = '';
+                    renderComments();
                 }
             });
+
+            renderComments();
 
             return postElement;
         }
@@ -346,32 +313,11 @@
         function renderPosts() {
             postsContainer.innerHTML = '';
             posts.forEach(post => {
-                postsContainer.appendChild(createPostElement(post));
+                postsContainer.insertAdjacentElement('afterbegin', createPostElement(post));
             });
         }
 
         renderPosts();
-
-        // Trending topics functionality
-        const trendingTopicsList = [
-            "#CommunityCleanup",
-            "#LocalBusinessSpotlight",
-            "#TrafficUpdate",
-            "#NeighborhoodWatch",
-            "#CommunityEvents"
-        ];
-
-        function renderTrendingTopics() {
-            trendingTopics.innerHTML = '';
-            trendingTopicsList.forEach(topic => {
-                const topicElement = document.createElement('li');
-                topicElement.className = 'text-[#ff5733] hover:text-custom-hover transition-colors';
-                topicElement.textContent = topic;
-                trendingTopics.appendChild(topicElement);
-            });
-        }
-
-        renderTrendingTopics();
 
         addMediaButton.addEventListener('click', () => {
             postMedia.click();

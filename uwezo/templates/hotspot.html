@@ -29,24 +29,24 @@
 </head>
 <body class="bg-xiketic text-gray-300 font-poppins">
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 bg-xiketic py-3 transition-all duration-300 z-50 shadow-md" id="header">
+    <header class="fixed top-0 left-0 w-full bg-xiketic py-5 transition-all duration-300 z-50" id="header">
         <div class="container mx-auto px-4 flex items-center justify-between">
-            <a href="#" class="flex items-center text-white font-bold text-2xl">
-                <img src="../assets/images/logo.png" width="68" height="48" alt="Jukumu Logo" class="mr-2">
+            <a href="{% url 'index' %}" class="flex items-center text-jukumu-orange font-bold text-2xl">
+                <img src="{% static 'images/logo.png' %}" width="68" height="48" alt="Jukumu Logo" class="mr-2">
                 Jukumu
             </a>
 
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Home</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Report Incident</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Hotspot Map</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Track Progress</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Community Forum</a>
-                <a href="#" class="text-white hover:text-custom-hover transition-colors">Contact</a>
+                <a href="{% url 'index' %}" class="text-white hover:text-jukumu-orange transition-colors">Home</a>
+                <a href="{% url 'report_incident' %}" class="text-white hover:text-jukumu-orange transition-colors">Report Incident</a>
+                <a href="{% url 'hotspot' %}" class="text-white hover:text-jukumu-orange transition-colors">Hotspot Map</a>
+                <a href="{% url 'trending' %}" class="text-white hover:text-jukumu-orange transition-colors">What's Trending</a>
+                <a href="{% url 'recent' %}" class="text-white hover:text-jukumu-orange transition-colors">Recent Posts</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-jukumu-orange transition-colors">About</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="#" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-white text-white rounded-full hover:bg-custom-hover hover:border-custom-hover transition-all duration-300">
+                <a href="{% url 'contribution' %}" class="hidden md:inline-flex items-center px-4 py-2 border-2 border-custom-hover text-custom-hover rounded-full hover:bg-custom-hover hover:text-white transition-all duration-300">
                     <span class="mr-2">Contribute</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -58,6 +58,7 @@
                     </svg>
                 </button>
             </div>
+
         </div>
     </header>
 
