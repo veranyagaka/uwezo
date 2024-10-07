@@ -79,9 +79,9 @@
       MPESA_CONSUMER_SECRET=your_consumer_secret
       ```
 ## Usage
-Incident Reporting: Users can report issues via the web interface. Admins will review and approve submissions.
-Donations: Community members can contribute through M-Pesa to support victims of reported incidents.
-Map: Incidents are displayed on a map, highlighting hotspots for corruption and injustice.
+- Incident Reporting: Users can report issues via the web interface. Admins will review and approve submissions.
+- Donations: Community members can contribute through M-Pesa to support victims of reported incidents.
+- Map: Incidents are displayed on a map, highlighting hotspots for corruption and injustice.
 
 ## Deployment
 To deploy Jukumu on Render or any other service:
