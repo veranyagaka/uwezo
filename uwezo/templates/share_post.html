@@ -1,0 +1,10 @@
+<h2>Share Post</h2>
+<p>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}&t={{ post.content }}" target="_blank">Share on Facebook</a>
+    |
+    <a href="https://twitter.com/intent/tweet?text={{ post.content }}&url={{ request.build_absolute_uri }}" target="_blank">Share on Twitter</a>
+    |
+    <a href="#" onclick="copyLink()">Copy Link</a>
+</p>
+<p>You can share this post using the link below:</p>
+<input type="text" value="{{ share_link }}" readonly>

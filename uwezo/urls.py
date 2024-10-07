@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from mpesa.views import mpesa_callback
+from mpesa.views import mpesa_callback, mpesa, process_payment
 urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', views.logout_view, name='logout'),
@@ -17,6 +17,14 @@ urlpatterns = [
     path('users/', views.user_list, name='user_list'),
     path('follow/<int:user_id>/', views.follow_unfollow, name='follow_unfollow'),
 
-    path('callback/', mpesa_callback, name='mpesa_callback')
+    path('callback/', mpesa_callback, name='mpesa_callback'),
+
+    path('post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
+    path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
+    path('post/<int:post_id>/share/', views.share_post, name='share_post'),
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
+
+    path('mpesa/', mpesa, name='mpesa'),
+    path('process_payment/', process_payment, name='process_payment'),
 # add profile with image to look good
 ]

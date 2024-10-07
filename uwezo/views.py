@@ -62,26 +62,7 @@ def dashboard(request):
     if not user.is_authenticated:
         return redirect('index') 
     print(f"User: {user.username}")
-    '''
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = user  # Assign the post to the current user
-            post.save()
-            return redirect('dashboard')  # Redirect to the dashboard after the post is created
-    else:
-        form = PostForm()
-
-    # Retrieve all posts from all users (or filter as needed)
-    posts = Post.objects.all()
-
-    return render(request, 'dashboard.html', {
-        'user': user,
-        'form': form,
-        'posts': posts,  # Pass the posts to the template
-    })
-    '''
+    
     if request.method == 'POST' and 'submit_post' in request.POST:
         post_form = PostForm(request.POST)
         if post_form.is_valid():
@@ -113,6 +94,14 @@ def dashboard(request):
         else:
             Like.objects.create(user=user, post=post)  # Like
         return redirect('dashboard')
+    #handling editing
+    elif 'edit_post' in request.POST:
+            post_id = request.POST.get('post_id')
+            post = get_object_or_404(Post, id=post_id)
+            post_form = PostForm(request.POST, instance=post)
+            if post_form.is_valid():
+                post = post_form.save()
+                return redirect('dashboard')
 
     else:
         post_form = PostForm()
@@ -223,19 +212,46 @@ def report_incident(request):
 def track_progress(request):
     incidents = IncidentReport.objects.filter(user=request.user)
     return render(request, 'track_progress.html', {'incidents': incidents})
-'''
-# other stuff
-from .forms import ReportForm
+from datetime import timezone
 
-def map(request):
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
     if request.method == 'POST':
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('report_list')  # Redirect to a list of reports
+        post_form = PostForm(request.POST, instance=post)  #
+        if post_form.is_valid():
+            old_content = post.content  
+            post = post_form.save(commit=False)  
+            if old_content != post.content:
+                post.edited = True  # Flagging the post was edited
+                post.edited_at = timezone.now()  # ? buggy area?
+            else:
+                post.edited = False
+            post.save() 
+            return redirect('post_detail', pk=post.pk) 
     else:
-        form = ReportForm()
-    return render(request, 'result.html', {'form': form})
-'''
+        post_form = PostForm(instance=post)
+    print(post)
+    return render(request, 'edit_post.html', {'form': post_form, 'post': post})
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('dashboard')
+    return render(request, 'confirm_delete.html', {'post': post})
+
+def share_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    #generate a shareable link or redirect to social media
+    share_link = request.build_absolute_uri(post.get_absolute_url())
+    return render(request, 'share_post.html', {'post': post, 'share_link': share_link})
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
 def map_view(request):
-    return render(request, 'maps.html')
+    context = {
+        'latitude': -1.286389, 
+        'longitude': 36.817223,  
+    }
+    return render(request, 'map.html', context)
+
