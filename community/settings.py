@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'community',
     'uwezo',
     'mpesa',
-    'leaflet',
+    #'leaflet',
 ]
 
 MIDDLEWARE = [

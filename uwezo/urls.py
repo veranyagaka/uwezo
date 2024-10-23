@@ -13,6 +13,14 @@ urlpatterns = [
     #path('profile/<str:username>/', views.profiles_view, name='profiles'), # other peoples profiles
     path('trending/', views.trending_posts, name='trending'),
     path('recent/', views.recent_posts, name='recent'),
+    
+    path('contribution/', views.recent_posts, name='contribution'),
+    path('hotspot/', views.recent_posts, name='hotspot'),
+    path('resource/', views.recent_posts, name='resource'),
+    path('community/', views.recent_posts, name='community'),
+
+    path('about/', views.recent_posts, name='about'),
+
     path('map/', views.map_view, name='map_view'),
     path('users/', views.user_list, name='user_list'),
     path('follow/<int:user_id>/', views.follow_unfollow, name='follow_unfollow'),
