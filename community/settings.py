@@ -117,7 +117,7 @@ MPESA_CALLBACK_URL = 'https://jukumu.onrender.com/callback/'
 MPESA_BASE_URL ='https://sandbox.safaricom.co.ke'
 MPESA_SECURITY_CREDENTIAL = "Safaricom123"
 
-GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', '/usr/lib/libgdal.so')
+#GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', '/usr/lib/libgdal.so')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
