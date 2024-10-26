@@ -198,41 +198,80 @@
         </svg>
     </a>
 
-    <!-- Login Modal -->
-    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-        <div class="bg-xiketic text-white rounded-lg p-8 max-w-md w-full">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-jukumu-orange">Login</h2>
-                <button class="text-gray-400 hover:text-white" id="close-login-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+   <!-- Login Modal -->
+   <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-xiketic text-white rounded-lg p-8 max-w-md w-full transform transition-all duration-300 scale-95 opacity-0">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-jukumu-orange">Welcome Back</h2>
+            <button class="text-gray-400 hover:text-white transition-colors" id="close-login-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div class="space-y-2">
+                <label for="login-username" class="block text-sm font-medium text-gray-300">Username</label>
+                <input type="text" id="login-username" name="username" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
             </div>
-            <form method="POST">
-                {% csrf_token %}
-                {{ login_form.as_p }}
-                <button type="submit" class="w-full bg-jukumu-orange text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors mt-4" name="login">Login</button>
-            </form>
+            <div class="space-y-2">
+                <label for="login-password" class="block text-sm font-medium text-gray-300">Password</label>
+                <input type="password" id="login-password" name="password" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember-me" class="h-4 w-4 text-jukumu-orange focus:ring-jukumu-orange border-gray-700 rounded">
+                    <label for="remember-me" class="ml-2 block text-sm text-gray-300">Remember me</label>
+                </div>
+                <a href="#" class="text-sm text-jukumu-orange hover:underline">Forgot password?</a>
+            </div>
+            <button type="submit" class="w-full bg-jukumu-orange text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors mt-4" name="login">Login</button>
+        </form>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-400">Don't have an account? <a href="#" id="switch-to-signup" class="text-jukumu-orange hover:underline">Sign up</a></p>
+            </div>
         </div>
     </div>
 
     <!-- Sign Up Modal -->
     <div id="signup-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-        <div class="bg-xiketic text-white rounded-lg p-8 max-w-md w-full">
+        <div class="bg-xiketic text-white rounded-lg p-8 max-w-md w-full transform transition-all duration-300 scale-95 opacity-0">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-jukumu-orange">Sign Up</h2>
-                <button class="text-gray-400 hover:text-white" id="close-signup-modal">
+                <h2 class="text-2xl font-bold text-jukumu-orange">Create an Account</h2>
+                <button class="text-gray-400 hover:text-white transition-colors" id="close-signup-modal">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            <form method="POST">
+            <form method="POST" class="space-y-4">
                 {% csrf_token %}
-                {{ signup_form.as_p }}
+                <div class="space-y-2">
+                    <label for="signup-username" class="block text-sm font-medium text-gray-300">Username</label>
+                    <input type="text" id="signup-username" name="username" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
+                </div>
+                <div class="space-y-2">
+                    <label for="signup-email" class="block text-sm font-medium text-gray-300">Email</label>
+                    <input type="email" id="signup-email" name="email" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
+                </div>
+                <div class="space-y-2">
+                    <label for="signup-password" class="block text-sm font-medium text-gray-300">Password</label>
+                    <input type="password" id="signup-password" name="password" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
+                </div>
+                <div class="space-y-2">
+                    <label for="signup-confirm-password" class="block text-sm font-medium text-gray-300">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-jukumu-orange">
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="agree-terms" class="h-4 w-4 text-jukumu-orange focus:ring-jukumu-orange border-gray-700 rounded">
+                    <label for="agree-terms" class="ml-2 block text-sm text-gray-300">I agree to the <a href="#" class="text-jukumu-orange hover:underline">Terms and Conditions</a></label>
+                </div>
                 <button type="submit" class="w-full bg-jukumu-orange text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors mt-4" name="signup">Sign Up</button>
             </form>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-400">Already have an account? <a href="#" id="switch-to-login" class="text-jukumu-orange hover:underline">Login</a></p>
+            </div>
         </div>
     </div>
 
@@ -278,7 +317,7 @@
             }
         });
 
-        // Login and Signup Modal functionality
+        // Updated modal functionality
         const loginModal = document.getElementById('login-modal');
         const signupModal = document.getElementById('signup-modal');
         const loginBtn = document.getElementById('login-btn');
@@ -287,13 +326,21 @@
         const mobileSignupBtn = document.getElementById('mobile-signup-btn');
         const closeLoginModal = document.getElementById('close-login-modal');
         const closeSignupModal = document.getElementById('close-signup-modal');
+        const switchToSignup = document.getElementById('switch-to-signup');
+        const switchToLogin = document.getElementById('switch-to-login');
 
         function openModal(modal) {
             modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+            }, 10);
         }
 
         function closeModal(modal) {
-            modal.classList.add('hidden');
+            modal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
         }
 
         loginBtn.addEventListener('click', () => openModal(loginModal));
@@ -308,6 +355,18 @@
         });
         closeLoginModal.addEventListener('click', () => closeModal(loginModal));
         closeSignupModal.addEventListener('click', () => closeModal(signupModal));
+
+        switchToSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(loginModal);
+            setTimeout(() => openModal(signupModal), 300);
+        });
+
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(signupModal);
+            setTimeout(() => openModal(loginModal), 300);
+        });
 
         window.addEventListener('click', (e) => {
             if (e.target === loginModal) closeModal(loginModal);
