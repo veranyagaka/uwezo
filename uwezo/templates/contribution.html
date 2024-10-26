@@ -110,35 +110,33 @@
                 <canvas id="contributionRateChart" height="100"></canvas>
             </div>
 
-            <!-- M-Pesa Express Integration -->
-            <div class="bg-[#282A36] min-h-screen p-8 flex flex-col md:flex-row justify-center items-start gap-8">
-                <!-- Contribution Form Section -->
-                <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl mb-12 max-w-2xl w-full" id="contribute">
-                  <h2 class="text-3xl font-bold mb-6 text-[#ff5733]">Contribute Now</h2>
-                  <form id="contributionForm" class="space-y-6">
-                    <div class="relative">
-                      <input type="number" id="amount" name="amount" class="peer w-full p-4 rounded-md bg-[#44475a] border-2 border-transparent focus:border-[#ff5733] focus:outline-none text-white placeholder-transparent transition-all duration-300" placeholder="Enter amount" required>
-                      <label for="amount" class="absolute left-4 -top-3 text-sm font-medium text-[#ff5733] transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-[#ff5733]">Amount (KES)</label>
-                    </div>
-                    <div class="relative">
-                      <input type="tel" id="phone" name="phone" class="peer w-full p-4 rounded-md bg-[#44475a] border-2 border-transparent focus:border-[#ff5733] focus:outline-none text-white placeholder-transparent transition-all duration-300" placeholder="Enter M-Pesa number" required>
-                      <label for="phone" class="absolute left-4 -top-3 text-sm font-medium text-[#ff5733] transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-[#ff5733]">M-Pesa Phone Number</label>
-                    </div>
-                    <button type="submit" class="w-full bg-[#ff5733] text-white font-bold py-3 px-6 rounded-md hover:bg-[#ff7f5c] active:bg-[#e64a2e] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#ff5733] focus:ring-opacity-50">
-                      Contribute via M-Pesa
-                    </button>
-                  </form>
-                  <div id="message" class="mt-4 text-center text-white hidden"></div>
+            <!-- Enhanced Contribution Form and Recent Contributions -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl">
+                    <h2 class="text-2xl font-bold mb-6 text-[#ff5733]">Contribute Now</h2>
+                    <form id="contributionForm" class="space-y-4">
+                        <div class="space-y-2">
+                            <label for="amount" class="text-sm font-medium text-gray-200">Amount (KES)</label>
+                            <input type="number" id="amount" name="amount" class="w-full p-3 rounded-md bg-[#44475a] border-2 border-[#6272a4] text-white focus:border-[#ff5733] focus:outline-none transition-all duration-300" placeholder="Enter amount" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="phone" class="text-sm font-medium text-gray-200">M-Pesa Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-md bg-[#44475a] border-2 border-[#6272a4] text-white focus:border-[#ff5733] focus:outline-none transition-all duration-300" placeholder="Enter M-Pesa number" required>
+                        </div>
+                        <button type="submit" id="submitBtn" class="w-full bg-[#ff5733] text-white font-bold py-3 px-6 rounded-md hover:bg-[#ff7f5c] active:bg-[#e64a2e] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#ff5733] focus:ring-opacity-50">
+                            Contribute via M-Pesa
+                        </button>
+                    </form>
+                    <div id="message" class="mt-4 text-center text-[#50fa7b] hidden"></div>
                 </div>
-              
-                <!-- Real-time Transactions Section -->
-                <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl mb-12 max-w-lg w-full">
-                  <h2 class="text-3xl font-bold mb-6 text-[#ff5733]">Recent Contributions</h2>
-                  <div id="transactionsList" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                    <!-- Transactions will be dynamically added here -->
-                  </div>
+
+                <div class="bg-[#282A36] rounded-lg p-8 shadow-2xl">
+                    <h2 class="text-2xl font-bold mb-6 text-[#ff5733]">Recent Contributions</h2>
+                    <div id="transactionsList" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- Transactions will be dynamically added here -->
+                    </div>
                 </div>
-              </div>
+            </div>
 
             <!-- Completed Projects -->
         <h2 class="text-3xl font-semibold mb-6">Completed Projects</h2>
@@ -296,9 +294,30 @@
                     }
                 }
             }
-        });const contributionForm = document.getElementById('contributionForm');
-  const messageEl = document.getElementById('message');
-  const transactionsList = document.getElementById('transactionsList');
+        });
+
+    const contributionForm = document.getElementById('contributionForm');
+    const messageEl = document.getElementById('message');
+    const transactionsList = document.getElementById('transactionsList');
+
+    // Function to add a new transaction to the list
+    function addTransaction(name, amount, timestamp) {
+            const transactionEl = document.createElement('div');
+            transactionEl.className = 'bg-[#44475a] rounded-lg p-4 flex justify-between items-center transform transition-all duration-300 hover:scale-105';
+            transactionEl.innerHTML = `
+                <div>
+                    <p class="text-white font-medium">${name}</p>
+                    <p class="text-sm text-gray-400">${timestamp.toLocaleTimeString()}</p>
+                </div>
+                <span class="text-[#50fa7b] font-bold">KES ${amount}</span>
+            `;
+            transactionsList.prepend(transactionEl);
+
+            // Remove oldest transaction if more than 5 are displayed
+            if (transactionsList.children.length > 5) {
+                transactionsList.removeChild(transactionsList.lastChild);
+            }
+        }
 
   // Sample data for initial transactions
   const sampleTransactions = [
@@ -337,24 +356,47 @@
 
   // Handle form submission
   contributionForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const amount = document.getElementById('amount').value;
-    const phone = document.getElementById('phone').value;
+            e.preventDefault();
+            const amount = document.getElementById('amount').value;
+            const phone = document.getElementById('phone').value;
 
-    // Simulate API call
-    setTimeout(() => {
-      messageEl.textContent = `Processing payment of KES ${amount} from ${phone}...`;
-      messageEl.classList.remove('hidden');
-      messageEl.classList.add('text-[#50fa7b]'); // Dracula green color for success message
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+            `;
 
-      // Add the new transaction to the list
-      const name = `+${phone.slice(-4)}`; // Use last 4 digits of phone number
-      addTransaction(name, amount);
+            // Simulate API call
+            setTimeout(() => {
+                messageEl.textContent = `Processing payment of KES ${amount} from ${phone}...`;
+                messageEl.classList.remove('hidden');
 
-      // Clear form fields
-      contributionForm.reset();
-    }, 1000);
-  });
+                // Add the new transaction to the list
+                const name = `+${phone.slice(-4)}`; // Use last 4 digits of phone number
+                addTransaction(name, amount, new Date());
+
+                // Clear form fields and reset button
+                contributionForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Contribute via M-Pesa';
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageEl.classList.add('hidden');
+                }, 5000);
+            }, 2000);
+        });
+
+        // Simulate real-time transactions
+        setInterval(() => {
+            const randomAmount = Math.floor(Math.random() * 10000) + 100;
+            const randomName = `User${Math.floor(Math.random() * 1000)}`;
+            addTransaction(randomName, randomAmount, new Date());
+        }, 10000);
 
   // Add input animations
   const inputs = document.querySelectorAll('input');
